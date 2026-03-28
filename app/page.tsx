@@ -160,7 +160,7 @@ export default function Home() {
           <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Open Source · AI + Climate</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Learning Journey</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Started in February 2026. Already shipped three products.&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Started in Feb 2026. Already shipped three products by March.&rdquo;</p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>All my notes on learning AI and applying it to climate problems — from day zero — are open source.</p>
             <a href="https://github.com/tinahuang1994/Climate-AI-Journey/tree/main/learning%20materials" target="_blank" rel="noopener noreferrer" style={goldPill}>Read the notes →</a>
           </div>
