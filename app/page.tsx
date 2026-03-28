@@ -274,7 +274,7 @@ export default function Home() {
                 marginBottom: "1.5rem",
               }}
             >
-              Climate Expert · AI Builder · Independent
+              Climate Expert · AI Builder · Problem Solver
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
               I grew up in Hangzhou — one of China&apos;s most beautiful cities. For years, it also had some of the worst air. I wanted to do something about it.
