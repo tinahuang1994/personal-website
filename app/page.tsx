@@ -135,7 +135,7 @@ export default function Home() {
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Smoke Story</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Most wildfire tools show you the data. This one tells you what it means.&rdquo;</p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Real-time satellite layers — active fires, smoke, PM2.5 — combined with AI-generated narrative and financial impact modeling. Built for anyone who needs to understand what&apos;s actually happening, not just what the numbers say.</p>
-            <a href="https://smokestory.onrender.com" target="_blank" rel="noopener noreferrer" style={goldPill}>View project →</a>
+            <a href="https://smokestory.onrender.com" target="_blank" rel="noopener noreferrer" style={goldPill}>Discover →</a>
           </div>
 
           {/* Card: NoThanks */}
@@ -144,7 +144,7 @@ export default function Home() {
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>NoThanks</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;You already know you should say no. You just don&apos;t know how.&rdquo;</p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Describe the situation. Get a response you can actually send. Built on frameworks I learned at BCG for saying no at work — without burning bridges.</p>
-            <a href="https://nothanks-xi.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Try it →</a>
+            <a href="https://nothanks-xi.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Try →</a>
           </div>
 
           {/* Card: Climate Triple Takes */}
@@ -162,7 +162,7 @@ export default function Home() {
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Learning Journey</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Started in Feb 2026. Already shipped three products by March.&rdquo;</p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>All my notes on learning AI and applying it to climate problems — from day zero — are open source.</p>
-            <a href="https://github.com/tinahuang1994/Climate-AI-Journey/tree/main/learning%20materials" target="_blank" rel="noopener noreferrer" style={goldPill}>Read the notes →</a>
+            <a href="https://github.com/tinahuang1994/Climate-AI-Journey/tree/main/learning%20materials" target="_blank" rel="noopener noreferrer" style={goldPill}>Learn →</a>
           </div>
         </div>
       </section>
