@@ -280,7 +280,10 @@ export default function Home() {
               I grew up in Hangzhou — one of China&apos;s most beautiful cities. For years, it also had some of the worst air. I wanted to do something about it.
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
-              I studied climate problems and solutions, and started applying them in the real world — in policy, in consulting, and in research.
+              At WRI, I analyzed national climate plans for countries around the world. The conclusion was uncomfortable: the world was far off track.
+            </p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
+              At BCG, I was the go-to knowledge team expert on climate science and policy. I helped a Middle East government write their national climate plans and Long Term Strategy, and helped corporations build net zero strategies they could actually execute.
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0 }}>
               Now AI makes it possible to build faster and better than ever. I&apos;m not going to miss that.
