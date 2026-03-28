@@ -38,15 +38,9 @@ export default function Home() {
             color: "#999891",
           }}
         >
-          <a href="#work" style={{ color: "#999891", textDecoration: "none" }}>
-            Work
-          </a>
-          <a href="#about" style={{ color: "#999891", textDecoration: "none" }}>
-            About
-          </a>
-          <a href="#contact" style={{ color: "#999891", textDecoration: "none" }}>
-            Contact
-          </a>
+          <a href="#work" style={{ color: "#999891", textDecoration: "none" }}>Work</a>
+          <a href="#about" style={{ color: "#999891", textDecoration: "none" }}>About</a>
+          <a href="#contact" style={{ color: "#999891", textDecoration: "none" }}>Contact</a>
         </div>
       </nav>
 
@@ -141,40 +135,10 @@ export default function Home() {
             }}
           />
           <div style={{ position: "relative", width: "340px", height: "340px" }}>
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "50%",
-                border: "1px solid #DDD9D0",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: "14%",
-                borderRadius: "50%",
-                border: "1px solid #C4BFB5",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: "28%",
-                borderRadius: "50%",
-                border: "1px solid #B07D3A",
-                opacity: 0.35,
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: "42%",
-                borderRadius: "50%",
-                backgroundColor: "#B07D3A",
-                opacity: 0.18,
-              }}
-            />
+            <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1px solid #DDD9D0" }} />
+            <div style={{ position: "absolute", inset: "14%", borderRadius: "50%", border: "1px solid #C4BFB5" }} />
+            <div style={{ position: "absolute", inset: "28%", borderRadius: "50%", border: "1px solid #B07D3A", opacity: 0.35 }} />
+            <div style={{ position: "absolute", inset: "42%", borderRadius: "50%", backgroundColor: "#B07D3A", opacity: 0.18 }} />
           </div>
         </div>
       </section>
@@ -214,21 +178,20 @@ export default function Home() {
           Complex problems. I go deep, then build something people can actually use.
         </p>
 
-        {/* Featured Card: Smoke Story */}
+        {/* 2x2 equal card grid */}
         <div
-          className="featured-card"
+          className="work-grid"
           style={{
-            border: "0.5px solid #DDD9D0",
-            borderRadius: "12px",
-            backgroundColor: "#FDFAF5",
-            overflow: "hidden",
-            marginBottom: "1px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 0,
+            gap: "1px",
+            backgroundColor: "#DDD9D0",
+            borderRadius: "12px",
+            overflow: "hidden",
           }}
         >
-          <div style={{ padding: "2.5rem" }}>
+          {/* Card: Smoke Story */}
+          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p
               style={{
                 fontFamily: "var(--font-inter), sans-serif",
@@ -240,7 +203,7 @@ export default function Home() {
                 marginBottom: "1rem",
               }}
             >
-              Featured · Geospatial + AI
+              Geospatial + AI
             </p>
             <h2
               style={{
@@ -285,58 +248,14 @@ export default function Home() {
               href="https://smokestory.onrender.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: "13px",
-                color: "#B07D3A",
-                textDecoration: "none",
-              }}
+              style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "#B07D3A", textDecoration: "none" }}
             >
               View project →
             </a>
           </div>
-          <div
-            style={{
-              backgroundColor: "#1a2535",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: "280px",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: "12px",
-                color: "rgba(255,255,255,0.35)",
-                textAlign: "center",
-                letterSpacing: "0.05em",
-              }}
-            >
-              Screenshot coming soon
-            </p>
-          </div>
-        </div>
 
-        {/* Two-column grid */}
-        <div
-          className="project-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1px",
-            backgroundColor: "#DDD9D0",
-            borderRadius: "12px",
-            overflow: "hidden",
-          }}
-        >
-          {/* Card 1: NoThanks */}
-          <div
-            style={{
-              backgroundColor: "#FDFAF5",
-              padding: "2.5rem",
-            }}
-          >
+          {/* Card: NoThanks */}
+          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p
               style={{
                 fontFamily: "var(--font-inter), sans-serif",
@@ -393,24 +312,14 @@ export default function Home() {
               href="https://nothanks-xi.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: "13px",
-                color: "#B07D3A",
-                textDecoration: "none",
-              }}
+              style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "#B07D3A", textDecoration: "none" }}
             >
               Try it →
             </a>
           </div>
 
-          {/* Card 2: Climate Triple Takes */}
-          <div
-            style={{
-              backgroundColor: "#FDFAF5",
-              padding: "2.5rem",
-            }}
-          >
+          {/* Card: Climate Triple Takes */}
+          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p
               style={{
                 fontFamily: "var(--font-inter), sans-serif",
@@ -467,25 +376,84 @@ export default function Home() {
               href="https://climatetripletakes.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: "13px",
-                color: "#B07D3A",
-                textDecoration: "none",
-              }}
+              style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "#B07D3A", textDecoration: "none" }}
             >
               Read →
+            </a>
+          </div>
+
+          {/* Card: Learning Journey */}
+          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-inter), sans-serif",
+                fontSize: "10px",
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                color: "#B07D3A",
+                margin: 0,
+                marginBottom: "1rem",
+              }}
+            >
+              Open Source · AI + Climate
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-cormorant), serif",
+                fontWeight: 300,
+                fontSize: "26px",
+                color: "#1C1C1A",
+                margin: 0,
+                marginBottom: "0.75rem",
+              }}
+            >
+              Learning Journey
+            </h2>
+            <p
+              style={{
+                fontFamily: "var(--font-cormorant), serif",
+                fontWeight: 400,
+                fontSize: "17px",
+                fontStyle: "italic",
+                color: "#999891",
+                margin: 0,
+                marginBottom: "1rem",
+                lineHeight: 1.7,
+              }}
+            >
+              &ldquo;Started in February 2026. Already shipped three products.&rdquo;
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-cormorant), serif",
+                fontWeight: 400,
+                fontSize: "17px",
+                color: "#666660",
+                margin: 0,
+                marginBottom: "1.5rem",
+                lineHeight: 1.8,
+              }}
+            >
+              All my notes on learning AI and applying it to climate problems — from day zero — are open source.
+            </p>
+            <a
+              href="https://github.com/tinahuang1994/Climate-AI-Journey/tree/main/learning%20materials"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "#B07D3A", textDecoration: "none" }}
+            >
+              Read the notes →
             </a>
           </div>
         </div>
       </section>
 
-      {/* ABOUT SECTION */}
+      {/* ABOUT + CONTACT SECTION */}
       <section
         id="about"
         style={{
           borderTop: "0.5px solid #DDD9D0",
-          padding: "5rem 3rem",
+          padding: "5rem 3rem 6rem",
         }}
       >
         <div
@@ -497,8 +465,8 @@ export default function Home() {
             alignItems: "start",
           }}
         >
-          {/* Photo */}
-          <div>
+          {/* Left column: photo + pills + actions */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <div
               style={{
                 width: "260px",
@@ -523,10 +491,64 @@ export default function Home() {
                 }}
               />
             </div>
+
+            {/* Credential pills */}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              {["Yale MEM", "UC Berkeley", "BCG", "WRI"].map((cred) => (
+                <span
+                  key={cred}
+                  style={{
+                    border: "0.5px solid #C4BFB5",
+                    borderRadius: "20px",
+                    fontSize: "11px",
+                    color: "#999891",
+                    fontFamily: "var(--font-inter), sans-serif",
+                    padding: "0.3rem 0.85rem",
+                  }}
+                >
+                  {cred}
+                </span>
+              ))}
+            </div>
+
+            {/* Action links */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <a
+                href="mailto:tina.huang@aya.yale.edu"
+                style={{
+                  display: "inline-block",
+                  backgroundColor: "#B07D3A",
+                  color: "#F5F2EC",
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontSize: "13px",
+                  padding: "0.75rem 1.5rem",
+                  borderRadius: "40px",
+                  textDecoration: "none",
+                  letterSpacing: "0.02em",
+                  textAlign: "center",
+                }}
+              >
+                Get in touch →
+              </a>
+              <a
+                href="/TinaHuang_CV_Full.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontSize: "13px",
+                  color: "#666660",
+                  textDecoration: "none",
+                  textAlign: "center",
+                }}
+              >
+                Download full CV →
+              </a>
+            </div>
           </div>
 
-          {/* Text */}
-          <div style={{ maxWidth: "480px" }}>
+          {/* Right column: bio + CTA */}
+          <div>
             <h2
               style={{
                 fontFamily: "var(--font-cormorant), serif",
@@ -547,7 +569,7 @@ export default function Home() {
                 letterSpacing: "0.1em",
                 color: "#B07D3A",
                 margin: 0,
-                marginBottom: "1.5rem",
+                marginBottom: "1.75rem",
               }}
             >
               Climate Expert · AI Builder · Independent
@@ -586,244 +608,59 @@ export default function Home() {
                 color: "#666660",
                 lineHeight: 1.9,
                 margin: 0,
-                marginBottom: "1.75rem",
+                marginBottom: "3rem",
               }}
             >
               Now AI makes it possible to build faster and better than ever. I&apos;m not going to miss that.
             </p>
 
-            {/* Credential pills */}
-            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-              {["Yale MEM", "UC Berkeley", "BCG", "WRI"].map((cred) => (
-                <span
-                  key={cred}
-                  style={{
-                    border: "0.5px solid #C4BFB5",
-                    borderRadius: "20px",
-                    fontSize: "11px",
-                    color: "#999891",
-                    fontFamily: "var(--font-inter), sans-serif",
-                    padding: "0.3rem 0.85rem",
-                  }}
-                >
-                  {cred}
-                </span>
-              ))}
+            {/* CTA block — merged into About */}
+            <div
+              id="contact"
+              style={{
+                borderTop: "0.5px solid #DDD9D0",
+                paddingTop: "2.5rem",
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: "var(--font-cormorant), serif",
+                  fontWeight: 300,
+                  fontSize: "42px",
+                  color: "#1C1C1A",
+                  lineHeight: 1.2,
+                  margin: 0,
+                  marginBottom: "1rem",
+                }}
+              >
+                Have a problem worth{" "}
+                <em style={{ color: "#B07D3A", fontStyle: "italic" }}>solving?</em>
+              </h3>
+              <p
+                style={{
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontSize: "13px",
+                  color: "#999891",
+                  margin: 0,
+                  marginBottom: "0.75rem",
+                  lineHeight: 1.7,
+                }}
+              >
+                I&apos;m open to consulting, collaboration, and the right full-time role.
+              </p>
+              <a
+                href="mailto:tina.huang@aya.yale.edu"
+                style={{
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontSize: "13px",
+                  color: "#B07D3A",
+                  textDecoration: "none",
+                }}
+              >
+                tina.huang@aya.yale.edu
+              </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* LEARNING JOURNEY */}
-      <section
-        style={{
-          borderTop: "0.5px solid #DDD9D0",
-          padding: "5rem 3rem",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#FDFAF5",
-            border: "0.5px solid #DDD9D0",
-            borderRadius: "12px",
-            padding: "3rem 3.5rem",
-            display: "grid",
-            gridTemplateColumns: "1fr auto",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-        >
-          {/* Left: text content */}
-          <div>
-            <p
-              style={{
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: "10px",
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#C4BFB5",
-                margin: 0,
-                marginBottom: "0.85rem",
-              }}
-            >
-              Learning Journey
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-cormorant), serif",
-                fontWeight: 400,
-                fontSize: "18px",
-                color: "#666660",
-                lineHeight: 1.8,
-                margin: 0,
-                marginBottom: "1.25rem",
-              }}
-            >
-              Started in February 2026. Already shipped three products.
-              <br />
-              All my notes on learning AI and applying it to climate — from day zero — are open source.
-            </p>
-            <a
-              href="https://github.com/tinahuang1994/Climate-AI-Journey/tree/main/learning%20materials"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-inter), sans-serif",
-                fontSize: "13px",
-                color: "#B07D3A",
-                textDecoration: "none",
-              }}
-            >
-              Read the notes →
-            </a>
-          </div>
-
-          {/* Right: stat display */}
-          <div
-            className="journey-stats"
-            style={{
-              display: "flex",
-              gap: "2.5rem",
-              alignItems: "center",
-              flexShrink: 0,
-            }}
-          >
-            {[
-              { number: "3", label: "products" },
-              { number: "2", label: "months" },
-              { number: "1", label: "person" },
-            ].map(({ number, label }) => (
-              <div key={label} style={{ textAlign: "center" }}>
-                <p
-                  style={{
-                    fontFamily: "var(--font-cormorant), serif",
-                    fontWeight: 300,
-                    fontSize: "56px",
-                    color: "#1C1C1A",
-                    margin: 0,
-                    lineHeight: 1,
-                  }}
-                >
-                  {number}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter), sans-serif",
-                    fontSize: "10px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: "#999891",
-                    margin: 0,
-                    marginTop: "0.4rem",
-                  }}
-                >
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section
-        id="contact"
-        className="cta-section"
-        style={{
-          borderTop: "0.5px solid #DDD9D0",
-          padding: "6rem 3rem 8rem",
-          display: "grid",
-          gridTemplateColumns: "1fr auto",
-          gap: "5rem",
-          alignItems: "center",
-        }}
-      >
-        {/* Left: headline + subtext + email */}
-        <div>
-          <h2
-            style={{
-              fontFamily: "var(--font-cormorant), serif",
-              fontWeight: 300,
-              fontSize: "52px",
-              color: "#1C1C1A",
-              lineHeight: 1.15,
-              margin: 0,
-              marginBottom: "1.25rem",
-            }}
-          >
-            Have a problem
-            <br />
-            worth{" "}
-            <em style={{ color: "#B07D3A", fontStyle: "italic" }}>solving?</em>
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-cormorant), serif",
-              fontWeight: 400,
-              fontSize: "18px",
-              color: "#999891",
-              margin: 0,
-              marginBottom: "0.75rem",
-              lineHeight: 1.8,
-            }}
-          >
-            I&apos;m open to consulting, collaboration, and the right full-time role.
-          </p>
-          <a
-            href="mailto:tina.huang@aya.yale.edu"
-            style={{
-              display: "block",
-              fontFamily: "var(--font-inter), sans-serif",
-              fontSize: "13px",
-              color: "#B07D3A",
-              textDecoration: "none",
-            }}
-          >
-            tina.huang@aya.yale.edu
-          </a>
-        </div>
-
-        {/* Right: buttons stacked, right-aligned */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            alignItems: "flex-end",
-            flexShrink: 0,
-          }}
-        >
-          <a
-            href="mailto:tina.huang@aya.yale.edu"
-            style={{
-              display: "inline-block",
-              backgroundColor: "#B07D3A",
-              color: "#F5F2EC",
-              fontFamily: "var(--font-inter), sans-serif",
-              fontSize: "13px",
-              padding: "0.75rem 1.75rem",
-              borderRadius: "40px",
-              textDecoration: "none",
-              letterSpacing: "0.02em",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Get in touch →
-          </a>
-          <a
-            href="/TinaHuang_CV_Full.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "var(--font-inter), sans-serif",
-              fontSize: "13px",
-              color: "#666660",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Download full CV →
-          </a>
         </div>
       </section>
 
@@ -837,37 +674,16 @@ export default function Home() {
           .hero-section > div:last-child {
             display: none !important;
           }
-          .cta-section {
-            grid-template-columns: 1fr !important;
-          }
-          .cta-section > div:last-child {
-            align-items: flex-start !important;
-          }
-          .journey-stats {
-            gap: 1.5rem !important;
-          }
         }
         @media (max-width: 768px) {
-          .featured-card {
-            grid-template-columns: 1fr !important;
-          }
-          .project-grid {
+          .work-grid {
             grid-template-columns: 1fr !important;
           }
           .about-grid {
             grid-template-columns: 1fr !important;
           }
           .about-grid > div:first-child {
-            display: flex;
-            justify-content: center;
-          }
-          .about-grid > div:last-child {
-            max-width: 100% !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .journey-stats {
-            display: none !important;
+            align-items: center;
           }
         }
       `}</style>
