@@ -56,54 +56,72 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section style={{ padding: "8rem 3rem 7rem" }}>
-        <h1
-          style={{
-            fontFamily: "var(--font-cormorant), serif",
-            fontWeight: 300,
-            fontSize: "88px",
-            lineHeight: 1.05,
-            color: "#1C1C1A",
-            margin: 0,
-            marginBottom: "1.75rem",
-            maxWidth: "900px",
-          }}
-        >
-          Climate expertise,
-          <br />
-          built into{" "}
-          <em style={{ color: "#B07D3A", fontStyle: "italic" }}>AI products.</em>
-        </h1>
-        <p
-          style={{
-            fontFamily: "var(--font-cormorant), serif",
-            fontWeight: 300,
-            fontSize: "20px",
-            color: "#999891",
-            margin: 0,
-            marginBottom: "2.25rem",
-            lineHeight: 1.5,
-          }}
-        >
-          I spot the problem. I build the fix. Start to finish.
-        </p>
-        <a
-          href="#work"
-          style={{
-            display: "inline-block",
-            backgroundColor: "#B07D3A",
-            color: "#F5F2EC",
-            fontFamily: "var(--font-inter), sans-serif",
-            fontSize: "11px",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            padding: "0.75rem 1.75rem",
-            borderRadius: "40px",
-            textDecoration: "none",
-          }}
-        >
-          See the work →
-        </a>
+      <section style={{ padding: "8rem 3rem 7rem", position: "relative", overflow: "hidden" }}>
+        {/* Ambient background blob */}
+        <div className="hero-ambient" style={{
+          position: "absolute",
+          top: "-10%",
+          right: "-5%",
+          width: "65%",
+          height: "130%",
+          background: "radial-gradient(ellipse at center, #DDD9D0 0%, transparent 68%)",
+          opacity: 0.45,
+          pointerEvents: "none",
+          zIndex: 0,
+        }} />
+        {/* Content */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <h1
+            className="hero-headline"
+            style={{
+              fontFamily: "var(--font-cormorant), serif",
+              fontWeight: 300,
+              fontSize: "88px",
+              lineHeight: 1.05,
+              color: "#1C1C1A",
+              margin: 0,
+              marginBottom: "1.75rem",
+              maxWidth: "900px",
+            }}
+          >
+            Climate expertise,
+            <br />
+            built into{" "}
+            <em style={{ color: "#B07D3A", fontStyle: "italic" }}>AI products.</em>
+          </h1>
+          <p
+            className="hero-sub"
+            style={{
+              fontFamily: "var(--font-cormorant), serif",
+              fontWeight: 300,
+              fontSize: "20px",
+              color: "#999891",
+              margin: 0,
+              marginBottom: "2.25rem",
+              lineHeight: 1.5,
+            }}
+          >
+            I spot the problem. I build the fix. Start to finish.
+          </p>
+          <a
+            href="#work"
+            className="hero-btn"
+            style={{
+              display: "inline-block",
+              backgroundColor: "#B07D3A",
+              color: "#F5F2EC",
+              fontFamily: "var(--font-inter), sans-serif",
+              fontSize: "11px",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              padding: "0.75rem 1.75rem",
+              borderRadius: "40px",
+              textDecoration: "none",
+            }}
+          >
+            See the work →
+          </a>
+        </div>
       </section>
 
       {/* WORK SECTION */}
@@ -364,6 +382,31 @@ export default function Home() {
 
       {/* Styles */}
       <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroAmbient {
+          0%   { transform: translate(0%, 0%)   scale(1);    opacity: 0.45; }
+          33%  { transform: translate(3%, -4%)  scale(1.06); opacity: 0.6;  }
+          66%  { transform: translate(-2%, 3%)  scale(0.97); opacity: 0.5;  }
+          100% { transform: translate(0%, 0%)   scale(1);    opacity: 0.45; }
+        }
+        .hero-headline {
+          animation: fadeUp 0.75s ease-out both;
+          animation-delay: 0.05s;
+        }
+        .hero-sub {
+          animation: fadeUp 0.75s ease-out both;
+          animation-delay: 0.3s;
+        }
+        .hero-btn {
+          animation: fadeUp 0.75s ease-out both;
+          animation-delay: 0.52s;
+        }
+        .hero-ambient {
+          animation: heroAmbient 14s ease-in-out infinite;
+        }
         .work-card {
           transition: background-color 0.25s ease;
           cursor: pointer;
