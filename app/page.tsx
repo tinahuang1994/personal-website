@@ -130,7 +130,7 @@ export default function Home() {
           }}
         >
           {/* Card: Smoke Story */}
-          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Geospatial + AI</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Smoke Story</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Most wildfire tools show you the data. This one tells you what it means.&rdquo;</p>
@@ -139,7 +139,7 @@ export default function Home() {
           </div>
 
           {/* Card: NoThanks */}
-          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>AI Chatbot · Workplace</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>NoThanks</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;You already know you should say no. You just don&apos;t know how.&rdquo;</p>
@@ -148,7 +148,7 @@ export default function Home() {
           </div>
 
           {/* Card: Climate Triple Takes */}
-          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Climate Communication</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Climate Triple Takes</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;One story. Three ways to read it.&rdquo;</p>
@@ -157,7 +157,7 @@ export default function Home() {
           </div>
 
           {/* Card: Learning Journey */}
-          <div style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Open Source · AI + Climate</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Learning Journey</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Started in Feb 2026. Already shipped three products by March.&rdquo;</p>
@@ -276,16 +276,16 @@ export default function Home() {
             >
               Climate Expert · AI Builder · Problem Solver
             </p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
               I grew up in Hangzhou — one of China&apos;s most beautiful cities. For years, it also had some of the worst air. I wanted to do something about it.
             </p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
               At WRI, I analyzed national climate plans for countries around the world. The conclusion was uncomfortable: the world was far off track.
             </p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
               At BCG, I was the go-to knowledge team expert on climate science and policy. I helped a Middle East government write their national climate plan and Long Term Strategy, and helped corporations build net zero strategies they could actually execute.
             </p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "16px", color: "#666660", lineHeight: 1.85, margin: 0 }}>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0 }}>
               Now AI makes it possible to build faster and better than ever. I&apos;m not going to miss that.
             </p>
           </div>
@@ -319,7 +319,7 @@ export default function Home() {
               style={{
                 fontFamily: "var(--font-cormorant), serif",
                 fontWeight: 400,
-                fontSize: "15px",
+                fontSize: "17px",
                 color: "#666660",
                 lineHeight: 1.8,
                 margin: 0,
@@ -360,8 +360,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Responsive styles */}
+      {/* Styles */}
       <style>{`
+        .work-card {
+          transition: background-color 0.25s ease;
+          cursor: pointer;
+        }
+        .work-card:hover {
+          background-color: #EDE8DF !important;
+        }
         @media (max-width: 1024px) {
           .about-grid {
             grid-template-columns: 220px minmax(0, 1fr) !important;
