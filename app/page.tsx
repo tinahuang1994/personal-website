@@ -212,13 +212,15 @@ export default function Home() {
               {["Yale MEM", "UC Berkeley", "BCG", "WRI"].map((cred) => (
                 <span
                   key={cred}
+                  className="cred-pill"
                   style={{
-                    border: "0.5px solid #C4BFB5",
+                    border: "0.5px solid #B07D3A",
                     borderRadius: "20px",
                     fontSize: "11px",
-                    color: "#999891",
+                    color: "#B07D3A",
                     fontFamily: "var(--font-inter), sans-serif",
                     padding: "0.3rem 0.75rem",
+                    backgroundColor: "transparent",
                   }}
                 >
                   {cred}
@@ -226,16 +228,17 @@ export default function Home() {
               ))}
             </div>
 
-            {/* CV link — outlined pill */}
+            {/* CV link — outlined pill with hover */}
             <a
               href="/TinaHuang_CV_Full.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              className="cv-btn"
               style={{
                 display: "block",
-                border: "0.5px solid #C4BFB5",
+                border: "1px solid #1C1C1A",
                 borderRadius: "40px",
-                color: "#999891",
+                color: "#1C1C1A",
                 fontFamily: "var(--font-inter), sans-serif",
                 fontSize: "11px",
                 textTransform: "uppercase",
@@ -243,6 +246,7 @@ export default function Home() {
                 padding: "0.6rem 1rem",
                 textDecoration: "none",
                 textAlign: "center",
+                transition: "background-color 0.2s ease, color 0.2s ease",
               }}
             >
               Download full CV →
@@ -368,6 +372,10 @@ export default function Home() {
         }
         .work-card:hover {
           background-color: #EDE8DF !important;
+        }
+        .cv-btn:hover {
+          background-color: #1C1C1A !important;
+          color: #F5F2EC !important;
         }
         @media (max-width: 1024px) {
           .about-grid {
