@@ -129,9 +129,6 @@ export default function Home() {
         id="work"
         style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem" }}
       >
-        <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#C4BFB5", margin: 0, marginBottom: "1rem" }}>
-          Work
-        </p>
         <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
           Complex problems. I go deep, then build something people can actually use.
         </p>
@@ -315,8 +312,7 @@ export default function Home() {
             id="contact"
             style={{
               minWidth: 0,
-              borderLeft: "0.5px solid #DDD9D0",
-              paddingLeft: "3rem",
+              paddingLeft: "1rem",
               display: "flex",
               flexDirection: "column",
               gap: "1rem",
