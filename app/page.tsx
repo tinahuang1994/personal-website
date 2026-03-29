@@ -91,7 +91,7 @@ export default function Home() {
           href="#work"
           style={{
             display: "inline-block",
-            backgroundColor: "#1C1C1A",
+            backgroundColor: "#B07D3A",
             color: "#F5F2EC",
             fontFamily: "var(--font-inter), sans-serif",
             fontSize: "11px",
@@ -228,25 +228,23 @@ export default function Home() {
               ))}
             </div>
 
-            {/* CV link — outlined pill with hover */}
+            {/* CV link — gold pill */}
             <a
               href="/TinaHuang_CV_Full.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="cv-btn"
               style={{
                 display: "block",
-                border: "1px solid #1C1C1A",
-                borderRadius: "40px",
-                color: "#1C1C1A",
+                backgroundColor: "#B07D3A",
+                color: "#F5F2EC",
                 fontFamily: "var(--font-inter), sans-serif",
                 fontSize: "11px",
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
                 padding: "0.6rem 1rem",
+                borderRadius: "40px",
                 textDecoration: "none",
                 textAlign: "center",
-                transition: "background-color 0.2s ease, color 0.2s ease",
               }}
             >
               Download full CV →
@@ -372,10 +370,6 @@ export default function Home() {
         }
         .work-card:hover {
           background-color: #EDE8DF !important;
-        }
-        .cv-btn:hover {
-          background-color: #1C1C1A !important;
-          color: #F5F2EC !important;
         }
         @media (max-width: 1024px) {
           .about-grid {
