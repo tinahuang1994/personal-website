@@ -287,7 +287,7 @@ export default function Home() {
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
               At BCG, I was the go-to knowledge team expert on climate science and policy. I helped a Middle East government write their national climate plans, and helped corporations build net zero strategies they could actually execute.
             </p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0 }}>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#B07D3A", lineHeight: 1.85, margin: 0 }}>
               Now AI makes it possible to build faster and better than ever. I&apos;m not going to miss that.
             </p>
           </div>
