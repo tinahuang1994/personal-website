@@ -285,7 +285,7 @@ export default function Home() {
               At WRI, I analyzed national climate plans for countries around the world. The conclusion was uncomfortable: the world was far off track.
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
-              At BCG, I was the go-to knowledge team expert on climate science and policy. I helped a Middle East government write their national climate plan and Long Term Strategy, and helped corporations build net zero strategies they could actually execute.
+              At BCG, I was the go-to knowledge team expert on climate science and policy. I helped a Middle East government write their national climate plans, and helped corporations build net zero strategies they could actually execute.
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0 }}>
               Now AI makes it possible to build faster and better than ever. I&apos;m not going to miss that.
