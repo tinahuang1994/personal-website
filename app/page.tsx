@@ -49,8 +49,9 @@ export default function Home() {
             letterSpacing: "0.1em",
           }}
         >
-          <a href="#work" style={{ color: "#999891", textDecoration: "none" }}>Work</a>
-          <a href="#about" style={{ color: "#999891", textDecoration: "none" }}>About</a>
+          <a href="#work"    style={{ color: "#999891", textDecoration: "none" }}>Work</a>
+          <a href="#writing" style={{ color: "#999891", textDecoration: "none" }}>Writing</a>
+          <a href="#about"   style={{ color: "#999891", textDecoration: "none" }}>About</a>
           <a href="#contact" style={{ color: "#999891", textDecoration: "none" }}>Contact</a>
         </div>
       </nav>
@@ -144,6 +145,15 @@ export default function Home() {
             overflow: "hidden",
           }}
         >
+          {/* Card: True Zero */}
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>AI Benchmarking · Climate</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>True Zero</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Most climate claims survive a press release. Not all of them survive this.&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>The AI read the reports. I decided what they meant. Six rounds of review to make sure we agreed. This is what I found.</p>
+            <a href="/true-zero.html" style={goldPill}>View →</a>
+          </div>
+
           {/* Card: Smoke Story */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Geospatial + AI</p>
@@ -162,22 +172,13 @@ export default function Home() {
             <a href="https://nothanks-xi.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Try →</a>
           </div>
 
-          {/* Card: Climate Triple Takes */}
-          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Climate Communication</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Climate Triple Takes</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;One story. Three ways to read it.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Satire, optimism, or straight facts. Pick your mood. Same story, completely different experience.</p>
-            <a href="https://climatetripletakes.netlify.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Read →</a>
-          </div>
-
           {/* Card: Learning Journey */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Open Source · AI + Climate</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Learning Journey</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Started in Feb 2026. Already shipped three products by March.&rdquo;</p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>All my notes on learning AI and applying it to climate problems — from day zero — are open source.</p>
-            <a href="https://github.com/tinahuang1994/Climate-AI-Journey/tree/main/learning%20materials" target="_blank" rel="noopener noreferrer" style={goldPill}>Follow →</a>
+            <a href="https://github.com/tinahuang1994/Climate-AI-Journey" target="_blank" rel="noopener noreferrer" style={goldPill}>Follow →</a>
           </div>
         </div>
       </section>
@@ -372,6 +373,59 @@ export default function Home() {
             >
               Get in touch →
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* WRITING SECTION */}
+      <section
+        id="writing"
+        style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem" }}
+      >
+        <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
+          Things I figured out along the way.
+        </p>
+        <div style={{ borderRadius: "12px", overflow: "hidden", border: "0.5px solid #DDD9D0" }}>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Essay · April 2026</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>I Shipped Four AI Products in One Month</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;No developer background. No roadmap. Just a download and a problem worth solving.&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>What I actually figured out about learning AI by building — from climate policy to four shipped products in one month.</p>
+            <a href="/writing/ai-month-one" style={goldPill}>Read →</a>
+          </div>
+        </div>
+      </section>
+
+      {/* FOR FUN SECTION */}
+      <section
+        style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem" }}
+      >
+        <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
+          Sometimes I build just to see what it feels like.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", backgroundColor: "#DDD9D0", borderRadius: "12px", overflow: "hidden" }}>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Hobby · Creative</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Echo</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Cold, vast, and quiet. The way space actually feels.&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Built after watching Project Hail Mary. A starfield that breathes with the music. Three classical pieces — Debussy, Satie, Holst. Or bring your own.</p>
+            <a href="https://echo-by-tina.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Listen →</a>
+          </div>
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Hobby · Climate</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Climate Triple Takes</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;One story. Three ways to read it.&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Satire, optimism, or straight facts. Pick your mood. Same story, completely different experience.</p>
+            <a href="https://climatetripletakes.netlify.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Discover →</a>
+          </div>
+
+          {/* Card: Understory — full width, newest */}
+          <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem", gridColumn: "1 / -1" }}>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Web Art · Language</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Understory</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Our language for nature is thin. These words got closer.&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>An immersive web art piece built around nature words that English has no room for — from Japanese, Arabic, Māori, Sanskrit, and others. Click a word. Enter the feeling it names.</p>
+            <a href="https://understory-rust.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Enter →</a>
           </div>
         </div>
       </section>
