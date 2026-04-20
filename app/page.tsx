@@ -425,7 +425,7 @@ export default function Home() {
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Understory</h2>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Our language for nature is thin. These words got closer.&rdquo;</p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>An immersive web art piece built around nature words that English has no room for — from Japanese, Arabic, Māori, Sanskrit, and others. Click a word. Enter the feeling it names.</p>
-            <a href="https://understory-rust.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Enter →</a>
+            <a href="https://understory-demo.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Enter →</a>
           </div>
         </div>
       </section>
