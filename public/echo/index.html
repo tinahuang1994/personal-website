@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Echo — Space Music Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        width: 100%; height: 100%;
+        background: #000;
+        color: rgba(255,255,255,0.88);
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        overflow: hidden;
+      }
+
+      /* ── Canvas ── */
+      #c {
+        display: block;
+        position: fixed;
+        inset: 0;
+        width: 100%; height: 100%;
+        opacity: 1;
+      }
+
+      /* ── Landing ── */
+      #landing {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 24px;
+        gap: 36px;
+        transition: opacity 0.9s ease;
+        overflow-y: auto;
+        background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%);
+      }
+      #landing.hidden { opacity: 0; pointer-events: none; }
+
+      .landing-header { text-align: center; }
+      @keyframes fadeInTitle {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .landing-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(72px, 12vw, 140px);
+        font-weight: 400;
+        letter-spacing: 0.3em;
+        color: rgba(255,255,255,0.95);
+        line-height: 1;
+        opacity: 0;
+        animation: fadeInTitle 2s ease forwards;
+      }
+      .landing-sub {
+        margin-top: 10px;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.35);
+        opacity: 0;
+        animation: fadeInTitle 2s ease 0.8s forwards;
+      }
+
+      /* ── Track grid ── */
+      .track-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        width: 100%;
+        max-width: 1100px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 0.8s forwards;
+      }
+
+      .track-card {
+        position: relative;
+        padding: 20px 18px;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        background: rgba(255,255,255,0.03);
+        cursor: pointer;
+        transition: border-color 0.25s, background 0.25s, transform 0.2s;
+        user-select: none;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+      .track-card:hover {
+        border-color: rgba(255,255,255,0.22);
+        background: rgba(255,255,255,0.07);
+        transform: translateY(-2px);
+      }
+      .track-card:active { transform: translateY(0); }
+
+      .track-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-weight: 500;
+        color: rgba(255,255,255,0.9);
+        line-height: 1.3;
+        margin-bottom: 4px;
+      }
+      .track-artist {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.12em;
+        color: rgba(255,255,255,0.3);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+      .track-mood {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 17px;
+        font-weight: 400;
+        font-style: italic;
+        color: rgba(255,255,255,0.45);
+        line-height: 1.5;
+      }
+
+      /* ── Upload option ── */
+      .upload-row {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        color: rgba(255,255,255,0.25);
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.06em;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease 1.0s forwards;
+      }
+      .upload-row label {
+        color: rgba(255,255,255,0.25);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        transition: color 0.2s;
+      }
+      .upload-row label:hover { color: rgba(255,255,255,0.55); }
+      #fileInput { display: none; }
+
+      /* ── Theme picker ── */
+      #themes {
+        position: fixed;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 700ms ease;
+        pointer-events: none;
+      }
+      #themes.visible { opacity: 1; pointer-events: auto; }
+      .theme-dot {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        opacity: 0.45;
+        transition: opacity 0.2s, transform 0.2s;
+        padding: 0 2px;
+        line-height: 1;
+      }
+      .theme-dot:hover { opacity: 0.85; transform: scale(1.2); }
+      .theme-dot.active { opacity: 1.0; transform: scale(1.25); }
+
+      /* ── Attribution (during playback) ── */
+      #attribution {
+        position: fixed;
+        bottom: 18px;
+        right: 20px;
+        font-size: 10px;
+        color: rgba(255,255,255,0.22);
+        line-height: 1.6;
+        text-align: right;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+      }
+      #attribution.visible { opacity: 1; }
+      #attribution a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+      /* ── Back button ── */
+      #backBtn {
+        position: fixed;
+        top: 22px;
+        left: 24px;
+        appearance: none;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.22);
+        font-size: 11px;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        padding: 4px 0;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease, color 0.3s;
+      }
+      #backBtn.visible { opacity: 1; pointer-events: auto; }
+      #backBtn:hover { color: rgba(255,255,255,0.55); }
+
+      /* ── Loading indicator ── */
+      #loading {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      #loading.visible { opacity: 1; }
+      #loading span {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        font-size: 10px;
+        font-weight: 300;
+        letter-spacing: 0.5em;
+        color: rgba(255,255,255,0.25);
+        animation: loadingPulse 1.6s ease-in-out infinite;
+      }
+      @keyframes loadingPulse {
+        0%, 100% { opacity: 0.15; }
+        50%       { opacity: 0.5; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+
+    <!-- Landing / song selection -->
+    <div id="landing">
+      <div class="landing-header">
+        <div class="landing-title">ECHO</div>
+        <div class="landing-sub">lost between stars</div>
+      </div>
+
+      <div class="track-grid" id="trackGrid"></div>
+
+      <div class="upload-row">
+        <span>or&nbsp;</span><label for="fileInput">bring your own music</label>
+        <input type="file" id="fileInput" accept="audio/*" />
+      </div>
+    </div>
+
+    <!-- Playback UI -->
+    <button id="backBtn" type="button">← leave</button>
+    <div id="loading"><span>· · ·</span></div>
+    <div id="attribution"></div>
+    <div id="themes"></div>
+
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script>
+      // ── Track list ──────────────────────────────────────────────────
+      const TRACKS = [
+        {
+          title: 'Clair de Lune',
+          artist: 'Claude Debussy',
+          mood: 'The moon touches everything it cannot keep.',
+          src: './audio/clair-de-lune.mp3',
+          license: 'CC BY-ND 3.0',
+          siteUrl: 'https://archive.org/details/ClairDeLunedebussy',
+          reactivity: 0.38, smoothing: 0.88,
+          theme: { color1: [0.93,0.93,0.96], color2: [0.72,0.76,0.88], color3: [0.55,0.62,0.82], meteor: 0xe0e4f0 },
+        },
+        {
+          title: 'Gymnopédie No. 1',
+          artist: 'Erik Satie',
+          mood: 'Twenty-five centuries of silence. The same stars, still.',
+          src: './audio/gymnopedie-no-1.mp3',
+          license: 'CC BY 4.0',
+          siteUrl: 'https://incompetech.com',
+          reactivity: 0.32, smoothing: 0.90,
+          theme: { color1: [0.97,0.94,0.86], color2: [0.85,0.78,0.58], color3: [0.70,0.60,0.38], meteor: 0xf0e0a0 },
+        },
+        {
+          title: 'Neptune, the Mystic',
+          artist: 'Gustav Holst',
+          mood: 'They walked offstage still singing. You stay behind.',
+          src: './audio/neptune-the-mystic.mp3',
+          license: 'Public Domain',
+          siteUrl: null,
+          reactivity: 0.85, smoothing: 0.75,
+          theme: { color1: [0.72,0.70,0.95], color2: [0.28,0.20,0.82], color3: [0.15,0.10,0.65], meteor: 0x7070ff },
+        },
+      ];
+
+      // ── Build track cards ────────────────────────────────────────────
+      const trackGrid = document.getElementById('trackGrid');
+      TRACKS.forEach((track, i) => {
+        const card = document.createElement('div');
+        card.className = 'track-card';
+        card.innerHTML = `
+          <div class="track-title">${track.title}</div>
+          <div class="track-artist">${track.artist} · ${track.license}</div>
+          <div class="track-mood">${track.mood}</div>
+        `;
+        card.addEventListener('click', () => selectTrack(track));
+        trackGrid.appendChild(card);
+      });
+
+      // ── Upload handler ───────────────────────────────────────────────
+      document.getElementById('fileInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        selectTrack({ title: file.name.replace(/\.[^.]+$/, ''), artist: 'Your audio', src: url, license: null, siteUrl: null });
+      });
+
+      // ── Audio ────────────────────────────────────────────────────────
+      const audio = new Audio();
+      audio.preload = 'auto';
+      audio.loop = false;
+
+      const loadingEl = document.getElementById('loading');
+      audio.addEventListener('playing', () => loadingEl.classList.remove('visible'));
+      audio.addEventListener('ended', () => { musicEnding = true; musicEndedAt = performance.now(); });
+
+      let audioCtx = null, analyser = null, freqData = null;
+      let bass = 0, mid = 0, treble = 0, beatStrength = 0;
+      let lowHistory = [], lastBeatAt = 0;
+      let currentTrackReactivity = 1.0;
+      let musicStartedAt = null;
+      let musicEnding = false;
+      let musicEndedAt = null;
+
+      function ensureAudioGraph() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 2048;
+        analyser.smoothingTimeConstant = 0.72;
+        freqData = new Uint8Array(analyser.frequencyBinCount);
+        const src = audioCtx.createMediaElementSource(audio);
+        src.connect(analyser);
+        analyser.connect(audioCtx.destination);
+      }
+
+      function updateAudioFeatures(nowMs) {
+        if (!analyser) return;
+        analyser.getByteFrequencyData(freqData);
+        const n = freqData.length;
+        const lowEnd = Math.max(2, Math.floor(n * 0.18));
+        const midEnd = Math.max(lowEnd + 1, Math.floor(n * 0.45));
+        let lowSum = 0, midSum = 0, treSum = 0;
+        for (let i = 0; i < lowEnd; i++) lowSum += freqData[i];
+        for (let i = lowEnd; i < midEnd; i++) midSum += freqData[i];
+        for (let i = midEnd; i < n; i++) treSum += freqData[i];
+        const lowAvg = (lowSum / lowEnd) / 255;
+        const midAvg = (midSum / Math.max(1, midEnd - lowEnd)) / 255;
+        const treAvg = (treSum / Math.max(1, n - midEnd)) / 255;
+        const sens = 1.15, k = 0.16;
+        bass   = bass   + (lowAvg * sens - bass)   * k;
+        mid    = mid    + (midAvg * sens - mid)     * k;
+        treble = treble + (treAvg * sens - treble)  * k;
+        lowHistory.push(lowAvg);
+        if (lowHistory.length > 45) lowHistory.shift();
+        let histAvg = 0;
+        for (let i = 0; i < lowHistory.length; i++) histAvg += lowHistory[i];
+        histAvg /= Math.max(1, lowHistory.length);
+        const threshold = Math.max(0.06, histAvg * 1.8 + 0.02);
+        if (lowAvg > threshold && nowMs - lastBeatAt > 260) {
+          beatStrength = 1.0;
+          lastBeatAt = nowMs;
+        }
+        beatStrength = Math.max(0, beatStrength - 0.08);
+      }
+
+      // ── Three.js scene ───────────────────────────────────────────────
+      const canvas = document.getElementById('c');
+      const TAU = Math.PI * 2;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance', alpha: false });
+      renderer.setClearColor(0x000000, 1);
+      renderer.toneMapping = THREE.ReinhardToneMapping;
+      renderer.toneMappingExposure = 1.2;
+
+      const starsScene = new THREE.Scene();
+      const starsCamera = new THREE.PerspectiveCamera(60, 1, 0.1, 200);
+      starsCamera.position.set(0, 0, 0);
+      starsCamera.lookAt(0, 0, -1);
+
+      let starLayers = [];
+      const shootingGroup = new THREE.Group();
+      starsScene.add(shootingGroup);
+      const shootingStars = [];
+      let nextAutoShootAt = 0, lastBeatShootAt = 0;
+
+      // Energy-based dynamic section state (works for any song)
+      let energyHistory = [];
+      const dynState = {
+        exposureBase: 1.1, exposureEnergy: 0.3,
+        pulse: 0.08, meteor: 0.3, reactivity: 0.6, alpha: 0.88,
+      };
+
+      function makeStarLayer(count, config) {
+        const cfg = Object.assign(
+          {
+            depthStart: 35,
+            depthSpan: 120,
+            spreadMul: 0.72,
+            yMul: 0.62,
+            bandJitterMul: 0.06,
+            sizeMul: 1.0,
+            alphaMul: 1.0,
+            reactivity: 1.0,
+          },
+          config || {}
+        );
+        const positions = new Float32Array(count * 3);
+        const phases = new Float32Array(count);
+        const layers = new Float32Array(count);
+        const seeds = new Float32Array(count);
+        const sizes = new Float32Array(count);
+
+        const seed = Math.random() * 1000;
+        function hash(i) {
+          const x = Math.sin((i + 1) * 999.123 + seed) * 43758.5453;
+          return x - Math.floor(x);
+        }
+        function randCentered(i) {
+          return hash(i) * 2 - 1;
+        }
+
+        for (let i = 0; i < count; i++) {
+          const u0 = hash(i * 5);
+          const u1 = hash(i * 5 + 1);
+          const u2 = hash(i * 5 + 2);
+          const u3 = hash(i * 5 + 3);
+          const u4 = hash(i * 5 + 4);
+
+          const z = -(cfg.depthStart + u2 * cfg.depthSpan);
+          const spread = -z * cfg.spreadMul;
+          const xNorm = randCentered(i + 41);
+          const yNorm = randCentered(i + 59);
+
+          let x = xNorm * spread;
+          let y = yNorm * spread * cfg.yMul;
+
+          const bandStrength = Math.exp(-Math.pow(yNorm * 1.1, 2));
+          y += randCentered(i + 73) * spread * cfg.bandJitterMul * bandStrength;
+
+          const brightChance = 0.06 + bandStrength * 0.32;
+          const layer = u3 < brightChance ? 1.0 : 0.0;
+
+          let sizeTier = 0.75 + u4 * 0.35;
+          if (u4 > 0.84) sizeTier = 1.25 + u4 * 0.55;
+          if (u4 > 0.965) sizeTier = 2.2 + u4 * 1.3;
+
+          positions[i * 3 + 0] = x;
+          positions[i * 3 + 1] = y;
+          positions[i * 3 + 2] = z;
+
+          phases[i] = u4 * TAU;
+          layers[i] = layer;
+          seeds[i] = u3;
+          sizes[i] = sizeTier * cfg.sizeMul;
+        }
+
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+        geo.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
+        geo.setAttribute("aLayer", new THREE.BufferAttribute(layers, 1));
+        geo.setAttribute("aSeed", new THREE.BufferAttribute(seeds, 1));
+        geo.setAttribute("aSize", new THREE.BufferAttribute(sizes, 1));
+
+        const uniforms = {
+          uTime: { value: 0 },
+          uBass: { value: 0 },
+          uMid: { value: 0 },
+          uTreble: { value: 0 },
+          uBeat: { value: 0 },
+          uEnergy: { value: 0 },
+          uGlobalPulse: { value: 1.0 },
+          uLayerAlpha: { value: cfg.alphaMul },
+          uLayerReactivity: { value: cfg.reactivity },
+          uWarmth: { value: 0.0 },
+          uColor1: { value: new THREE.Vector3(0.90, 0.93, 1.0) },
+          uColor2: { value: new THREE.Vector3(0.55, 0.72, 1.0) },
+          uColor3: { value: new THREE.Vector3(0.55, 0.85, 0.82) },
+        };
+
+        const vertexShader = `
+          attribute float aPhase;
+          attribute float aLayer;
+          attribute float aSeed;
+          attribute float aSize;
+
+          uniform float uTime;
+          uniform float uBass;
+          uniform float uMid;
+          uniform float uTreble;
+          uniform float uBeat;
+          uniform float uEnergy;
+          uniform float uGlobalPulse;
+          uniform float uLayerReactivity;
+          uniform float uWarmth;
+          uniform vec3 uColor1;
+          uniform vec3 uColor2;
+          uniform vec3 uColor3;
+
+          varying float vGlow;
+          varying vec3 vColor;
+          varying float vTwinkle;
+
+          void main() {
+            vec3 pos = position;
+
+            float breathe = uBeat * 0.032 + uBass * 0.018;
+            pos += pos * breathe;
+
+            vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+            gl_Position = projectionMatrix * mvPosition;
+
+            float depth = max(0.001, -mvPosition.z);
+            float baseSize = mix(0.9, 2.0, aLayer) * aSize;
+            float starImpact = mix(0.7, 1.4, clamp((aSize - 0.9) / 2.2, 0.0, 1.0));
+            float size =
+              baseSize * (1.0 + (uBass * 1.3 + uBeat * 1.8 * starImpact) * uLayerReactivity);
+            size *= (0.92 + uGlobalPulse * 0.2);
+            size *= (90.0 / depth);
+
+            gl_PointSize = size;
+
+            float t = aSeed;
+            vColor = mix(uColor1, uColor2, t * 0.6);
+            vColor = mix(vColor, uColor3, clamp((t - 0.8) * 5.0, 0.0, 1.0) * 0.4);
+
+            float tw1 = sin(uTime * (0.85 + aSize * 0.65 + uEnergy * 0.55) + aPhase * 1.7);
+            float tw2 = sin(uTime * (1.6 + aSize * 0.42 + uTreble * 1.8) + aPhase * 2.9) * 0.7;
+            vTwinkle = 0.5 + 0.5 * clamp(tw1 + tw2, -1.0, 1.0);
+            vGlow = 0.0;
+          }
+        `;
+
+        const fragmentShader = `
+          precision highp float;
+          uniform float uBass;
+          uniform float uMid;
+          uniform float uTreble;
+          uniform float uBeat;
+          uniform float uEnergy;
+          uniform float uGlobalPulse;
+          uniform float uLayerAlpha;
+          uniform float uLayerReactivity;
+
+          varying float vGlow;
+          varying vec3 vColor;
+          varying float vTwinkle;
+
+          void main() {
+            vec2 uv = gl_PointCoord.xy;
+            float dist = length(uv - vec2(0.5));
+
+            float alpha = smoothstep(0.56, 0.01, dist);
+
+            float twinkle = mix(0.55, 2.15, vTwinkle);
+            float dynamic = 0.85 + uEnergy * 0.55;
+            float audioGlow =
+              (0.72 + (uBass * 1.8 + uTreble * 0.9 + uBeat * 1.4) * uLayerReactivity) *
+              twinkle *
+              dynamic *
+              uGlobalPulse;
+            float glow = alpha * audioGlow;
+
+            vec3 color = vColor;
+            color += vec3(0.03, 0.03, 0.08) * uTreble;
+
+            gl_FragColor = vec4(color * glow, alpha * 0.9 * uLayerAlpha);
+          }
+        `;
+
+        const mat = new THREE.ShaderMaterial({
+          uniforms,
+          vertexShader,
+          fragmentShader,
+          transparent: true,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending,
+        });
+
+        const points = new THREE.Points(geo, mat);
+        points.frustumCulled = false;
+        return { points, uniforms, config: cfg };
+      }
+
+      function buildScenes() {
+        for (const l of starLayers) { starsScene.remove(l.points); l.points.geometry.dispose(); l.points.material.dispose(); }
+        starLayers = [];
+        starLayers.push(
+          makeStarLayer(14000, { depthStart:85, depthSpan:150, spreadMul:1.06, yMul:0.96, bandJitterMul:0.015, sizeMul:0.62, alphaMul:0.55, reactivity:0.45 }),
+          makeStarLayer(8000,  { depthStart:42, depthSpan:120, spreadMul:0.96, yMul:0.9,  bandJitterMul:0.02,  sizeMul:1.0,  alphaMul:0.9,  reactivity:1.0  }),
+          makeStarLayer(1800,  { depthStart:24, depthSpan:65,  spreadMul:0.86, yMul:0.82, bandJitterMul:0.03,  sizeMul:1.45, alphaMul:1.0,  reactivity:1.35 }),
+          makeStarLayer(300,   { depthStart:20, depthSpan:55,  spreadMul:0.8,  yMul:0.78, bandJitterMul:0.02,  sizeMul:1.3,  alphaMul:1.1,  reactivity:1.8  })
+        );
+        for (const l of starLayers) { l.points.userData.uniforms = l.uniforms; starsScene.add(l.points); }
+      }
+
+      function spawnShootingStar(power, isGold) {
+        const yTop   = 20 + Math.random() * 24;
+        const xStart = (Math.random() * 2 - 1) * 42;
+        const zStart = -(42 + Math.random() * 45);
+        const dirX = (Math.random() < 0.5 ? -1 : 1) * (0.75 + Math.random() * 0.35);
+        const dir  = new THREE.Vector3(dirX, -0.36 - Math.random() * 0.24, -0.2 - Math.random() * 0.2).normalize();
+        const length   = 5.2 + Math.random() * 7.2 + power * 3.2;
+        const travel   = 30  + Math.random() * 30   + power * 18;
+        const duration = Math.max(0.45, 1.25 - power * 0.32 + Math.random() * 0.32);
+        const positions = new Float32Array(6);
+        const geometry  = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.LineBasicMaterial({
+          color: isGold ? 0xffd060 : 0xc8d8f0,
+          transparent: true, opacity: 0.0,
+          blending: THREE.AdditiveBlending, depthWrite: false,
+        });
+        const line = new THREE.Line(geometry, material);
+        shootingGroup.add(line);
+        shootingStars.push({ line, geometry, material, start: new THREE.Vector3(xStart, yTop, zStart), dir, length, travel, duration, t: 0 });
+      }
+
+      function updateShootingStars(dt, now, energy) {
+        const boost = dynState.meteor;
+        const isHighEnergy = boost > 0.65;
+
+        if (!audio.paused && beatStrength > 0.84 && now - lastBeatShootAt > 420) {
+          const isGold = isHighEnergy && beatStrength > 0.72;
+          spawnShootingStar(0.8 + energy * 0.9 * boost, isGold);
+          if (Math.random() < 0.3 + boost * 0.35) spawnShootingStar(0.55 + energy * 0.65 * boost, false);
+          lastBeatShootAt = now;
+        }
+
+        if (!audio.paused && now >= nextAutoShootAt) {
+          if (Math.random() < 0.12 + boost * 0.65) spawnShootingStar(0.25 + energy * 0.55 * boost, false);
+          if (boost > 0.55 || Math.random() < 0.38) spawnShootingStar(0.35 + energy * 0.8 * boost, false);
+          const interval = Math.max(0.34, 1.5 - (energy * 0.7 + boost * 0.7));
+          nextAutoShootAt = now + interval * 1000 * (0.7 + Math.random() * 0.9);
+        }
+
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+          const s = shootingStars[i];
+          s.t += dt;
+          const p = s.t / s.duration;
+          if (p >= 1) { shootingGroup.remove(s.line); s.geometry.dispose(); s.material.dispose(); shootingStars.splice(i, 1); continue; }
+          const dist = s.travel * p;
+          const head = s.start.clone().addScaledVector(s.dir, dist);
+          const tail = head.clone().addScaledVector(s.dir, -s.length);
+          const arr = s.geometry.attributes.position.array;
+          arr[0]=tail.x; arr[1]=tail.y; arr[2]=tail.z;
+          arr[3]=head.x; arr[4]=head.y; arr[5]=head.z;
+          s.geometry.attributes.position.needsUpdate = true;
+          s.material.opacity = (0.72 + energy * 0.23) * Math.min(1, p*5) * Math.min(1, (1-p)*3.2);
+        }
+      }
+
+      buildScenes();
+
+      // ── Resize ───────────────────────────────────────────────────────
+      function resize() {
+        const w = window.innerWidth, h = window.innerHeight;
+        renderer.setSize(w, h, false);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        starsCamera.aspect = w / h;
+        starsCamera.updateProjectionMatrix();
+      }
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      // ── Render loop ──────────────────────────────────────────────────
+      const t0 = performance.now();
+      let lastFrameAt = t0;
+
+      function animate() {
+        const now = performance.now();
+        const dt  = Math.min(0.05, (now - lastFrameAt) / 1000);
+        lastFrameAt = now;
+        const elapsed = (now - t0) / 1000;
+
+        updateAudioFeatures(now);
+
+        if (!audio.paused && musicStartedAt === null) musicStartedAt = now;
+        const fadeIn = musicStartedAt ? Math.min(1, (now - musicStartedAt) / 4000) : 0;
+        const reactScale = currentTrackReactivity * fadeIn;
+
+        // Ending fade-out
+        let endScale = 1.0;
+        if (musicEnding && musicEndedAt) {
+          endScale = Math.max(0, 1 - (now - musicEndedAt) / 4500);
+          if (endScale <= 0) {
+            musicEnding = false;
+            stopAndReset();
+            attributionEl.classList.remove('visible');
+            backBtn.classList.remove('visible');
+            themesEl.classList.remove('visible');
+            setTimeout(() => landingEl.classList.remove('hidden'), 300);
+          }
+        }
+
+        const energy = Math.min(1, (bass + mid + treble) / 1.6);
+
+        // Energy-based dynamics — works for any song
+        energyHistory.push(energy);
+        if (energyHistory.length > 1800) energyHistory.shift();
+        const energyAvg = energyHistory.reduce((a, b) => a + b, 0) / Math.max(1, energyHistory.length);
+        const ratio = energy / Math.max(0.01, energyAvg);
+        const isHigh = ratio > 1.4, isLow = ratio < 0.5;
+
+        const targetExposureBase   = isHigh ? 1.55 : isLow ? 1.0  : 1.25;
+        const targetExposureEnergy = isHigh ? 0.5  : isLow ? 0.2  : 0.35;
+        const targetPulse          = isHigh ? 0.22 : isLow ? 0.07 : 0.12;
+        const targetMeteor         = isHigh ? 1.0  : isLow ? 0.2  : 0.55;
+        const targetReactivity     = isHigh ? 1.2  : isLow ? 0.55 : 0.9;
+        const targetAlpha          = isHigh ? 1.04 : isLow ? 0.82 : 0.94;
+
+        const sLerp = 0.04;
+        dynState.exposureBase   += (targetExposureBase   - dynState.exposureBase)   * sLerp;
+        dynState.exposureEnergy += (targetExposureEnergy - dynState.exposureEnergy) * sLerp;
+        dynState.pulse          += (targetPulse          - dynState.pulse)          * sLerp;
+        dynState.meteor         += (targetMeteor         - dynState.meteor)         * sLerp;
+        dynState.reactivity     += (targetReactivity     - dynState.reactivity)     * sLerp;
+        dynState.alpha          += (targetAlpha          - dynState.alpha)          * sLerp;
+
+        const breathe      = 0.97 + 0.06 * Math.sin(elapsed * 0.16);
+        const globalPulse  = breathe * (1.0 + beatStrength * dynState.pulse * reactScale);
+        const wakeupBonus  = fadeIn * 0.28;
+        renderer.toneMappingExposure = (dynState.exposureBase + wakeupBonus + energy * dynState.exposureEnergy * reactScale + beatStrength * (0.08 + dynState.pulse * 0.6) * reactScale) * endScale;
+
+        for (const layer of starLayers) {
+          const u = layer.points.userData.uniforms;
+          if (!u) continue;
+          u.uTime.value          = elapsed;
+          u.uBass.value          = bass;
+          u.uMid.value           = mid;
+          u.uTreble.value        = treble;
+          u.uBeat.value          = beatStrength;
+          u.uEnergy.value        = energy;
+          u.uGlobalPulse.value   = globalPulse;
+          u.uLayerAlpha.value    = layer.config.alphaMul * dynState.alpha * endScale;
+          u.uLayerReactivity.value = layer.config.reactivity * dynState.reactivity * reactScale;
+          u.uWarmth.value        = 0.0;
+        }
+
+        updateShootingStars(dt, now, energy);
+
+        renderer.autoClear = false;
+        renderer.clear();
+        renderer.render(starsScene, starsCamera);
+
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      // ── Track selection ──────────────────────────────────────────────
+      const landingEl     = document.getElementById('landing');
+      const canvasEl      = document.getElementById('c');
+      const backBtn       = document.getElementById('backBtn');
+      const attributionEl = document.getElementById('attribution');
+
+      function selectTrack(track) {
+        currentTrackReactivity = track.reactivity != null ? track.reactivity : 1.0;
+        musicStartedAt = null;
+        musicEnding = false;
+        musicEndedAt = null;
+        if (analyser) analyser.smoothingTimeConstant = track.smoothing != null ? track.smoothing : 0.72;
+        loadingEl.classList.add('visible');
+        applyTheme(track.theme || THEMES[0], track.theme ? null : themeDots[0]);
+        audio.src = track.src;
+        audio.load();
+
+        // Show attribution
+        if (track.license && track.license !== 'Public Domain' && track.siteUrl) {
+          attributionEl.innerHTML = `"${track.title}" by ${track.artist}<br><a href="${track.siteUrl}" target="_blank" rel="noopener">${track.license}</a>`;
+        } else if (track.license) {
+          attributionEl.innerHTML = `"${track.title}" by ${track.artist} · ${track.license}`;
+        } else {
+          attributionEl.innerHTML = '';
+        }
+
+        // Transition
+        landingEl.classList.add('hidden');
+        setTimeout(() => {
+          attributionEl.classList.add('visible');
+          backBtn.classList.add('visible');
+          startAudio();
+          // hint flash: show color picker for 3s so users discover it
+          themesEl.classList.add('visible');
+          window.clearTimeout(window.__themeHideTimer);
+          window.__themeHideTimer = window.setTimeout(() => themesEl.classList.remove('visible'), 3000);
+        }, 400);
+      }
+
+      function stopAndReset() {
+        audio.pause();
+        audio.src = '';
+        bass = mid = treble = beatStrength = 0;
+        energyHistory = [];
+        lowHistory = [];
+        musicStartedAt = null;
+        musicEnding = false;
+        musicEndedAt = null;
+        loadingEl.classList.remove('visible');
+        shootingStars.forEach(s => { shootingGroup.remove(s.line); s.geometry.dispose(); s.material.dispose(); });
+        shootingStars.length = 0;
+        nextAutoShootAt = 0;
+        lastBeatShootAt = 0;
+      }
+
+      backBtn.addEventListener('click', () => {
+        stopAndReset();
+        attributionEl.classList.remove('visible');
+        backBtn.classList.remove('visible');
+        setTimeout(() => landingEl.classList.remove('hidden'), 200);
+      });
+
+      async function startAudio() {
+        try {
+          ensureAudioGraph();
+          if (audioCtx && audioCtx.state === 'suspended') await audioCtx.resume();
+          await audio.play();
+        } catch (err) { console.warn('Audio play failed:', err); }
+      }
+
+      // ── Themes ──────────────────────────────────────────────────────
+      const THEMES = [
+        { name: 'Cold Void',   dot: '#8ab4f8', color1: [0.90,0.93,1.0],  color2: [0.55,0.72,1.0],  color3: [0.55,0.85,0.82], meteor: 0xc8d8f0 },
+        { name: 'Red Giant',   dot: '#cc3322', color1: [1.0,0.78,0.72],   color2: [0.85,0.18,0.12], color3: [0.65,0.12,0.08], meteor: 0xff6644 },
+        { name: 'Deep Purple', dot: '#7744cc', color1: [0.85,0.78,1.0],   color2: [0.48,0.22,0.92], color3: [0.62,0.32,0.88], meteor: 0xc8a0ff },
+        { name: 'Pale Teal',   dot: '#40d0c8', color1: [0.78,0.97,0.95],  color2: [0.18,0.72,0.70], color3: [0.12,0.85,0.82], meteor: 0x80f0e8 },
+      ];
+
+      const themesEl = document.getElementById('themes');
+      let activeDot = null;
+      window.__meteorColor = THEMES[0].meteor;
+
+      const themeDots = [];
+
+      function applyTheme(theme, dotEl) {
+        for (const layer of starLayers) {
+          const u = layer.points.userData.uniforms;
+          if (!u) continue;
+          u.uColor1.value.set(...theme.color1);
+          u.uColor2.value.set(...theme.color2);
+          u.uColor3.value.set(...theme.color3);
+        }
+        window.__meteorColor = theme.meteor;
+        if (activeDot) activeDot.classList.remove('active');
+        activeDot = dotEl || null;
+        if (activeDot) activeDot.classList.add('active');
+      }
+
+      THEMES.forEach((theme, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'theme-dot' + (i === 0 ? ' active' : '');
+        dot.title = theme.name;
+        dot.style.color = theme.dot;
+        dot.textContent = '✦';
+        dot.addEventListener('click', () => applyTheme(theme, dot));
+        themesEl.appendChild(dot);
+        themeDots.push(dot);
+        if (i === 0) activeDot = dot;
+      });
+
+      window.addEventListener('pointermove', () => {
+        themesEl.classList.add('visible');
+        window.clearTimeout(window.__themeHideTimer);
+        window.__themeHideTimer = window.setTimeout(() => {
+          themesEl.classList.remove('visible');
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,426 @@
+.page {
+  --ink: #171916;
+  --forest: #23362b;
+  --bronze: #a56f35;
+  --cream: #f4f0e8;
+  --paper: #fbf8f2;
+  --line: #d8d2c7;
+  --muted: #696b65;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.nav {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--cream) 94%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.navInner,
+.shell {
+  width: min(1280px, calc(100% - 96px));
+  margin: 0 auto;
+}
+
+.navInner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  color: var(--ink);
+  font: 400 24px/1 var(--font-cormorant), serif;
+  text-decoration: none;
+}
+
+.back,
+.meta,
+.label,
+.toggle button,
+.footerMeta {
+  font: 500 10px/1.5 var(--font-inter), sans-serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.back {
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: var(--forest);
+  text-decoration: none;
+}
+
+.header {
+  padding: 104px 0 88px;
+}
+
+.meta,
+.label {
+  color: var(--bronze);
+}
+
+.titleGrid,
+.dekGrid,
+.columnHead,
+.sectionRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.titleGrid {
+  margin-top: 34px;
+}
+
+.title,
+.dek,
+.headCell,
+.language {
+  min-width: 0;
+}
+
+.title,
+.dek {
+  padding-right: 48px;
+}
+
+.title + .title,
+.dek + .dek,
+.headCell + .headCell,
+.language + .language {
+  padding-right: 0;
+  padding-left: 48px;
+  border-left: 1px solid var(--line);
+}
+
+.title h1 {
+  margin: 0;
+  font: 300 clamp(48px, 5.2vw, 76px)/1 var(--font-cormorant), serif;
+  letter-spacing: -.032em;
+}
+
+.title[data-lang="zh"] h1 {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  font-size: clamp(42px, 4.6vw, 66px);
+  font-weight: 400;
+  line-height: 1.34;
+  letter-spacing: -.02em;
+}
+
+.dekGrid {
+  margin-top: 30px;
+}
+
+.dek p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--muted);
+  font: 400 19px/1.72 var(--font-cormorant), serif;
+}
+
+.dek[data-lang="zh"] p {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.note {
+  max-width: 820px;
+  margin: 46px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 400 17px/1.7 var(--font-cormorant), serif;
+}
+
+.columnHead {
+  position: sticky;
+  z-index: 20;
+  top: 72px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--cream) 96%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.headCell {
+  padding: 18px 48px 18px 0;
+}
+
+.headCell + .headCell {
+  padding-left: 48px;
+}
+
+.toggle {
+  display: none;
+}
+
+.article {
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionRow {
+  border-bottom: 1px solid var(--line);
+  content-visibility: auto;
+  contain-intrinsic-size: 480px;
+}
+
+.sectionRow:last-child {
+  border-bottom: 0;
+}
+
+.language {
+  padding: 64px 48px 70px 0;
+}
+
+.language + .language {
+  padding-right: 0;
+  padding-left: 48px;
+}
+
+.language h2 {
+  margin: 0 0 28px;
+  font: 400 clamp(30px, 3vw, 42px)/1.15 var(--font-cormorant), serif;
+}
+
+.language[data-lang="zh"] {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+}
+
+.language[data-lang="zh"] h2 {
+  font-family: inherit;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.5;
+}
+
+.language p,
+.language li {
+  margin: 0 0 20px;
+  color: #4f514c;
+  font: 400 18px/1.82 var(--font-cormorant), serif;
+}
+
+.language[data-lang="zh"] p,
+.language[data-lang="zh"] li {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.language p:last-child,
+.language li:last-child {
+  margin-bottom: 0;
+}
+
+.callout {
+  margin-top: 28px !important;
+  padding: 20px 22px;
+  border-left: 2px solid var(--bronze);
+  background: var(--paper);
+  color: var(--forest) !important;
+  font-size: 22px !important;
+  font-style: italic;
+  line-height: 1.6 !important;
+}
+
+.language[data-lang="zh"] .callout {
+  font-size: 19px !important;
+  font-style: normal;
+  line-height: 1.85 !important;
+}
+
+.footer {
+  padding: 88px 0 100px;
+  text-align: center;
+}
+
+.footerMeta {
+  color: var(--bronze);
+}
+
+.footer h2 {
+  max-width: 720px;
+  margin: 20px auto 28px;
+  font: 300 clamp(36px, 4vw, 54px)/1.08 var(--font-cormorant), serif;
+}
+
+.footer a {
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  color: var(--forest);
+  font: 500 10px/1 var(--font-inter), sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .navInner,
+  .shell {
+    width: calc(100% - 32px);
+  }
+
+  .header {
+    padding: 72px 0 54px;
+  }
+
+  .titleGrid,
+  .dekGrid {
+    display: block;
+  }
+
+  .title,
+  .dek,
+  .title + .title,
+  .dek + .dek {
+    padding: 0;
+    border: 0;
+  }
+
+  .title[data-mobile-hidden="true"],
+  .dek[data-mobile-hidden="true"] {
+    display: none;
+  }
+
+  .title h1,
+  .title[data-lang="zh"] h1 {
+    font-size: clamp(44px, 13vw, 60px);
+  }
+
+  .dekGrid {
+    margin-top: 24px;
+  }
+
+  .note {
+    margin-top: 34px;
+  }
+
+  .columnHead {
+    display: none;
+  }
+
+  .toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: sticky;
+    z-index: 20;
+    top: 72px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    background: var(--cream);
+  }
+
+  .toggle button {
+    padding: 16px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+  }
+
+  .toggle button[data-active="true"] {
+    background: var(--forest);
+    color: var(--paper);
+  }
+
+  .sectionRow {
+    display: block;
+  }
+
+  .language,
+  .language + .language {
+    padding: 48px 0 54px;
+    border-left: 0;
+  }
+
+  .language[data-mobile-hidden="true"] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Public reading mode: one language at a time. */
+.titleGrid,
+.dekGrid {
+  display: block;
+  max-width: 920px;
+}
+
+.title,
+.dek,
+.title + .title,
+.dek + .dek {
+  padding-right: 0;
+  padding-left: 0;
+  border-left: 0;
+}
+
+.dek p {
+  max-width: 720px;
+}
+
+.columnHead {
+  display: none;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: sticky;
+  z-index: 20;
+  top: 72px;
+  width: min(480px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-top-color: var(--ink);
+  background: var(--cream);
+}
+
+.toggle button {
+  padding: 16px 20px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.toggle button[data-active="true"] {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+.article {
+  width: min(860px, 100%);
+  margin: 44px auto 0;
+  border-top: 1px solid var(--ink);
+}
+
+.sectionRow {
+  display: block;
+}
+
+.language,
+.language + .language {
+  padding: 64px 0 70px;
+  border-left: 0;
+}
+
+@media (max-width: 800px) {
+  .article {
+    margin-top: 30px;
+  }
+
+  .language,
+  .language + .language {
+    padding: 48px 0 54px;
+  }
+}

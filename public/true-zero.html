@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>True Zero — Separating net zero from true zero</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:   #F5F2EC;
+  --card:    #FDFAF5;
+  --bronze:  #B07D3A;
+  --dark:    #1C1C1A;
+  --mid:     #666660;
+  --muted:   #999891;
+  --border:  #DDD9D0;
+  --hover:   #EDE8DF;
+  --green:   #2D7D46;
+  --red:     #C0392B;
+  --amber:   #D97706;
+  --W: 960px;
+  --H: 540px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #E8E4DC;
+  color: var(--dark);
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 36px 20px 72px;
+}
+
+/* ── NAV ── */
+.nav {
+  max-width: var(--W);
+  margin: 0 auto 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--dark);
+  letter-spacing: 0.01em;
+}
+.nav-dots { display: flex; gap: 6px; align-items: center; }
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border); cursor: pointer; transition: background 0.2s;
+}
+.dot.active { background: var(--bronze); }
+.nav-btns { display: flex; gap: 8px; }
+.nav-btn {
+  background: var(--bronze); color: var(--cream);
+  border: none; border-radius: 40px;
+  padding: 6px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.nav-btn:hover { opacity: 0.82; }
+.nav-btn:disabled { opacity: 0.28; cursor: default; }
+
+/* ── SLIDE ── */
+.slides-wrap { max-width: var(--W); margin: 0 auto; }
+.slide {
+  display: none;
+  width: var(--W);
+  min-height: var(--H);
+  background: var(--cream);
+  border-radius: 12px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  overflow: hidden;
+  animation: fadeUp 0.22s ease;
+}
+.slide.active { display: flex; flex-direction: column; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+
+.slide-counter {
+  max-width: var(--W);
+  margin: 10px auto 0;
+  text-align: right;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── SHARED LAYOUT ── */
+.slide-inner {
+  padding: 44px 56px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--bronze); margin-bottom: 10px;
+}
+.slide-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.15;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+.slide-title em { font-style: normal; color: var(--dark); }
+.divider { width: 40px; height: 1px; background: var(--bronze); margin-bottom: 28px; }
+
+/* ═══════════════════════════════════
+   SLIDE 1 — COVER
+═══════════════════════════════════ */
+.slide-cover {
+  background: var(--dark);
+  justify-content: space-between;
+  padding: 56px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.cover-blob {
+  position: absolute;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(176,125,58,0.15) 0%, transparent 70%);
+  top: -100px; right: -60px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cover-top { flex: 1; }
+.cover-eyebrow {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 24px;
+}
+.cover-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 82px; line-height: 1;
+  color: var(--cream); margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.cover-tagline {
+  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-weight: 400; letter-spacing: 0.01em;
+}
+.cover-divider {
+  width: 48px; height: 0.5px;
+  background: rgba(176,125,58,0.6);
+  margin: 32px 0;
+}
+.cover-meta {
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  letter-spacing: 0.03em;
+}
+.cover-meta strong { color: rgba(255,255,255,0.65); font-weight: 500; }
+
+/* ═══════════════════════════════════
+   SLIDE 2 — PROBLEM
+═══════════════════════════════════ */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 1;
+}
+.problem-card {
+  background: var(--card);
+  padding: 24px 22px;
+}
+.problem-num {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 10px;
+}
+.problem-title {
+  font-family: Arial, sans-serif;
+  font-weight: 600; font-size: 13px;
+  color: var(--dark); margin-bottom: 8px; line-height: 1.3;
+}
+.problem-body { font-size: 14px; color: var(--mid); line-height: 1.6; }
+.problem-example {
+  margin-top: 10px; padding: 8px 10px;
+  background: var(--hover); border-radius: 5px;
+  font-size: 13px; color: var(--mid); line-height: 1.5;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════
+   SLIDE 3 — WHAT I BUILT
+═══════════════════════════════════ */
+.bcg-callout {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--bronze);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 14px; line-height: 1.65; color: var(--dark);
+}
+.bcg-callout strong { color: var(--bronze); font-weight: 600; }
+.engine-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+}
+.engine-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex; gap: 14px;
+}
+.engine-icon {
+  font-size: 18px; flex-shrink: 0; margin-top: 1px;
+}
+.engine-label {
+  font-size: 14px; font-weight: 600;
+  color: var(--dark); margin-bottom: 4px; line-height: 1.3;
+}
+.engine-body { font-size: 14px; color: var(--mid); line-height: 1.55; }
+.agent-pills {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;
+}
+.agent-pill {
+  font-size: 9px; font-weight: 700;
+  background: #F0EBE0; color: var(--bronze);
+  border-radius: 3px; padding: 2px 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════
+   SLIDE 4 — FOUR PANELS
+═══════════════════════════════════ */
+.panels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+}
+.panel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+}
+.panel-num {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--bronze); margin-bottom: 6px;
+}
+.panel-name {
+  font-weight: 600; font-size: 14px;
+  color: var(--dark); margin-bottom: 8px; line-height: 1.3;
+}
+.panel-desc { font-size: 14px; color: var(--mid); line-height: 1.55; margin-bottom: 10px; }
+.panel-kpis {
+  display: flex; flex-wrap: wrap; gap: 4px;
+}
+.kpi-tag {
+  font-size: 10px; color: var(--muted);
+  background: var(--hover); border-radius: 3px;
+  padding: 2px 7px; white-space: nowrap;
+}
+
+/* ═══════════════════════════════════
+   SLIDE 5 — INDICATOR TABLE
+═══════════════════════════════════ */
+.table-wrap {
+  flex: 1;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+}
+.bench-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.bench-table th {
+  background: var(--hover);
+  padding: 8px 10px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--dark);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.bench-table th.col-label { text-align: left; color: var(--muted); font-weight: 400; }
+.bench-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  text-align: center;
+  color: var(--mid);
+}
+.bench-table tr:last-child td { border-bottom: none; }
+.bench-table td.col-label {
+  text-align: left;
+  font-size: 13px;
+  color: var(--dark);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.section-row td {
+  background: #F0EBE0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  padding: 5px 10px;
+  text-align: left !important;
+}
+.icon-yes { color: var(--green); font-weight: 700; font-size: 12px; }
+.icon-no  { color: var(--red);   font-weight: 700; font-size: 12px; }
+.icon-par { color: var(--amber); font-weight: 700; font-size: 11px; }
+.icon-na  { color: var(--border); }
+.badge {
+  display: inline-block;
+  font-size: 9px; font-weight: 700;
+  padding: 2px 6px; border-radius: 3px;
+  white-space: nowrap; letter-spacing: 0.03em;
+}
+.badge-green { background: #EBF5EE; color: var(--green); }
+.badge-red   { background: #FBEAE9; color: var(--red); }
+.badge-amber { background: #FEF3E0; color: var(--amber); }
+.badge-muted { background: var(--hover); color: var(--muted); }
+
+/* ═══════════════════════════════════
+   SLIDE 6 — ANALYST BRIEFING
+═══════════════════════════════════ */
+.output-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  flex: 1;
+}
+.oc-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--card);
+  display: flex; flex-direction: column;
+}
+.oc-header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 12px;
+}
+.oc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400; font-size: 18px; color: var(--dark);
+}
+.oc-badge {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 4px;
+}
+.gbu-row {
+  display: flex; gap: 8px; align-items: flex-start;
+  padding: 7px 10px; margin-bottom: 3px; border-radius: 5px;
+  font-size: 13px; line-height: 1.5;
+}
+.gbu-good { background: #F0FAF3; border-left: 2px solid var(--green); }
+.gbu-bad  { background: #FEF2F2; border-left: 2px solid var(--red); }
+.gbu-ugly { background: #FFFBEB; border-left: 2px solid var(--amber); }
+.gbu-lbl {
+  font-size: 8px; font-weight: 800;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  flex-shrink: 0; margin-top: 2px; padding: 1px 4px; border-radius: 3px;
+}
+.lbl-g { background: #EBF5EE; color: var(--green); }
+.lbl-b { background: #FBEAE9; color: var(--red); }
+.lbl-u { background: #FEF3E0; color: var(--amber); }
+.oc-action {
+  margin-top: 10px; padding-top: 9px;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--muted);
+  line-height: 1.55; font-style: italic;
+  flex: 1; align-items: flex-end;
+}
+.credits-note {
+  margin-top: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 18px;
+  display: flex; gap: 16px; align-items: center;
+}
+.credits-icon { font-size: 20px; }
+.credits-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--bronze); margin-bottom: 2px;
+}
+.credits-body { font-size: 13px; color: var(--mid); line-height: 1.5; }
+
+/* ═══════════════════════════════════
+   SLIDE 7 — SECTOR PATTERNS
+═══════════════════════════════════ */
+.patterns-list {
+  display: flex; flex-direction: column; gap: 16px; flex: 1;
+}
+.pattern {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding-bottom: 16px; border-bottom: 0.5px solid var(--border);
+}
+.pattern:last-child { border-bottom: none; padding-bottom: 0; }
+.pattern-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 40px;
+  color: var(--border); line-height: 1;
+  flex-shrink: 0; width: 28px; text-align: right;
+}
+.pattern-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--dark); margin-bottom: 4px; line-height: 1.3;
+}
+.pattern-body { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+/* ═══════════════════════════════════
+   SLIDE 8 — ROADMAP
+═══════════════════════════════════ */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.roadmap-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.roadmap-card.now { border-color: var(--bronze); }
+.roadmap-phase {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 5px;
+}
+.roadmap-card.now .roadmap-phase { color: var(--bronze); }
+.roadmap-name {
+  font-weight: 600; font-size: 14px;
+  color: var(--dark); margin-bottom: 8px;
+}
+.roadmap-items { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.roadmap-items li {
+  font-size: 13px; color: var(--mid);
+  padding-left: 13px; position: relative; line-height: 1.4;
+}
+.roadmap-items li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--bronze); font-size: 10px; top: 1px;
+}
+.closing {
+  font-size: 14px; color: var(--mid); line-height: 1.65;
+  border-top: 0.5px solid var(--border);
+  padding-top: 18px;
+}
+.closing strong { color: var(--dark); }
+
+/* ═══════════════════════════════════
+   CARBON CREDIT PORTFOLIO
+═══════════════════════════════════ */
+.cp-grid { display: flex; gap: 12px; flex: 1; }
+.cp-col { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: var(--card); display: flex; flex-direction: column; }
+.cp-company { font-weight: 700; font-size: 14px; color: var(--dark); margin-bottom: 4px; }
+.cp-portfolio-note { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; font-style: italic; }
+.cp-project { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
+.cp-project:first-child { padding-top: 0; }
+.cp-project:last-child { border-bottom: none; padding-bottom: 0; }
+.cp-proj-top { display: flex; align-items: flex-start; gap: 6px; }
+.cp-type-badge { font-size: 8px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 5px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+.cp-type-removal   { background: #EBF5EE; color: var(--green); }
+.cp-type-avoidance { background: #FEF3E0; color: var(--amber); }
+.cp-proj-name { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.35; }
+.cp-proj-meta { font-size: 13px; color: var(--mid); line-height: 1.5; }
+.cp-proj-notes { font-size: 13px; color: var(--muted); line-height: 1.5; font-style: italic; }
+.cp-projects { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 10px; }
+.cp-data-source { font-size: 10px; color: var(--muted); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); line-height: 1.4; }
+
+/* ── BLUR OVERLAY ── */
+.slide.blurred { position: relative; }
+.slide.blurred .blur-content {
+  filter: blur(5px);
+  pointer-events: none;
+  user-select: none;
+}
+.blur-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.blur-stamp {
+  border: 3px solid var(--bronze);
+  border-radius: 6px;
+  padding: 14px 34px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  transform: rotate(-12deg);
+  background: rgba(245,242,236,0.55);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 16px rgba(176,125,58,0.18);
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-brand">True Zero</div>
+  <div class="nav-dots" id="dots"></div>
+  <div class="nav-btns">
+    <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>← Prev</button>
+    <button class="nav-btn" id="nextBtn" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="slides-wrap">
+
+<!-- ══ SLIDE 1: COVER ══ -->
+<div class="slide active" id="slide-0" style="background:var(--cream);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-100px;right:-60px;width:480px;height:480px;background:radial-gradient(circle,rgba(176,125,58,0.10) 0%,transparent 68%);border-radius:50%;pointer-events:none;"></div>
+  <div class="slide-inner" style="justify-content:space-between;">
+    <!-- top -->
+    <div>
+      <div class="eyebrow" style="margin-bottom:32px;">April 2026 &nbsp;·&nbsp; MVP &nbsp;·&nbsp; Big Tech</div>
+      <div style="font-family: 'Cormorant Garamond', serif;font-weight:300;font-size:68px;line-height:1;color:var(--dark);letter-spacing:-0.01em;margin-bottom:14px;">True Zero</div>
+      <div style="font-family: 'Cormorant Garamond', serif;font-size:22px;color:var(--mid);font-style:italic;font-weight:300;margin-bottom:32px;">Separating net zero from true zero.</div>
+      <!-- three metadata chips -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:40px;padding:6px 16px;font-size:11px;color:var(--mid);">SBTi · IEA NZE · Sustainability Reports</div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:40px;padding:6px 16px;font-size:11px;color:var(--mid);">30+ KPIs per company</div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:40px;padding:6px 16px;font-size:11px;color:var(--mid);">6-agent AI review pipeline</div>
+      </div>
+    </div>
+    <!-- bottom -->
+    <div style="border-top:0.5px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end;">
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px;">Tina Huang</div>
+        <div style="font-size:14px;color:var(--muted);">Climate AI Builder &nbsp;·&nbsp; tinahuang.vercel.app</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:13px;color:var(--muted);">Built on climate domain expertise</div>
+        <div style="font-size:13px;color:var(--muted);">scaled with AI tooling</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 2: THE PROBLEM ══ -->
+<div class="slide" id="slide-1">
+  <div class="slide-inner">
+    <div class="eyebrow">01 — The problem</div>
+    <div class="slide-title">Corporate climate claims are <em>almost impossible to verify or compare</em></div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">Problem 01</div>
+        <div class="problem-title">Everything is self-declared</div>
+        <div class="problem-body">Every Big Tech company has a net zero pledge. None have had their long-term pledges independently validated. "Net zero by 2030" and "net zero by 2030 (SBTi certified)" look identical in a press release — but they are not the same thing.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Problem 02</div>
+        <div class="problem-title">No standard basis for comparison</div>
+        <div class="problem-body">Every company uses different scopes, base years, accounting methods, and offset strategies. Without a consistent framework, any comparison across companies produces a meaningless number.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Problem 03</div>
+        <div class="problem-title">The picture changes between reports</div>
+        <div class="problem-body">Microsoft paused all carbon removal purchases in April 2026. Google removed its 2030 pledge from its website in June 2025. None of this appears in any sustainability report — it requires active monitoring.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 3: WHAT I BUILT ══ -->
+<div class="slide blurred" id="slide-2">
+  <div class="slide-inner">
+    <div class="eyebrow">02 — What I built</div>
+    <div class="slide-title">The methodology is expert-designed — <em>execution runs at AI scale</em></div>
+    <div class="blur-content">
+    <div class="bcg-callout">
+      At BCG, our climate practice spent <strong>20+ minutes per company</strong> manually verifying these claims — pulling SBTi data, cross-checking report figures, assessing trajectory against IEA pathways, reconciling Scope 3 categories. The methodology behind True Zero is built on that same domain knowledge. <strong>AI automates the extraction, validation, and review pipeline — the analytical framework and judgment criteria are expert-designed.</strong> This is climate expertise scaled with tooling, not a generic AI scraper.
+    </div>
+    <div class="engine-grid">
+      <div class="engine-card">
+        <div class="engine-icon">🧠</div>
+        <div>
+          <div class="engine-label">Expert-designed methodology</div>
+          <div class="engine-body">Every KPI, rating rule, and flag was designed from climate domain knowledge — SBTi criteria, GHG Protocol, IEA NZE pathways. The framework tells AI what to look for and how to judge it.</div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-icon">🔍</div>
+        <div>
+          <div class="engine-label">6-agent AI review pipeline</div>
+          <div class="engine-body">Every benchmark passes through six specialist agents before it's final — each catching a different class of error.</div>
+          <div class="agent-pills">
+            <span class="agent-pill">SBTi Reviewer</span>
+            <span class="agent-pill">Policy Expert</span>
+            <span class="agent-pill">CSO Agent</span>
+            <span class="agent-pill">Writing Reviewer</span>
+            <span class="agent-pill">Peer Comparator</span>
+            <span class="agent-pill">Disclosure Consistency</span>
+          </div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-icon">✍️</div>
+        <div>
+          <div class="engine-label">Analyst voice — not a data dump</div>
+          <div class="engine-body">Good/Bad/Ugly per company. Specific, sourced, non-diplomatic. An action line per company naming the right engagement mechanism — shareholder resolution, RFP clause, investment screen.</div>
+        </div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-icon">📡</div>
+        <div>
+          <div class="engine-label">Post-report monitoring</div>
+          <div class="engine-body">Material events after the report date update the analyst assessment, with a threshold for what counts as material vs. noise — a judgment call the methodology defines explicitly.</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="blur-overlay"><div class="blur-stamp">Request a Demo</div></div>
+</div>
+
+<!-- ══ SLIDE 4: THE REVIEW PIPELINE ══ -->
+<div class="slide blurred" id="slide-3">
+  <div class="slide-inner">
+    <div class="eyebrow">03 — Quality control</div>
+    <div class="slide-title">No benchmark ships without passing <em>six specialist AI review agents</em></div>
+    <div class="blur-content" style="flex:1;display:flex;flex-direction:column;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;flex:1;">
+
+      <div style="background:var(--card);padding:22px 20px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Agent 01</div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.3;">SBTi Technical Reviewer</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.6;">Verifies every SBTi field against the Target Dashboard — status labels, temperature classification, the 90/10 rule.</div>
+      </div>
+
+      <div style="background:var(--card);padding:22px 20px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Agent 02</div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.3;">Corporate Climate Policy Expert</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.6;">Checks methodology consistency, rating calibration, and whether IEA alignment assessments are substantiated.</div>
+      </div>
+
+      <div style="background:var(--card);padding:22px 20px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Agent 03</div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.3;">CSO Agent</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.6;">One per company. Finds factual errors and mischaracterized commitments — not tasked to soften language.</div>
+      </div>
+
+      <div style="background:var(--card);padding:22px 20px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Agent 04</div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.3;">Writing Reviewer</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.6;">Flags vague and diplomatic language — every action line must be a concrete recommendation, not a generic suggestion.</div>
+      </div>
+
+      <div style="background:var(--card);padding:22px 20px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Agent 05</div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.3;">Peer Comparator</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.6;">Reads all action lines together — flags any recommendation that could transfer to a different company.</div>
+      </div>
+
+      <div style="background:var(--card);padding:22px 20px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Agent 06</div>
+        <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;line-height:1.3;">Disclosure Consistency</div>
+        <div style="font-size:14px;color:var(--mid);line-height:1.6;">Catches fields that are individually valid but collectively contradictory — e.g. a published transition plan with zero capex alignment.</div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+  <div class="blur-overlay"><div class="blur-stamp">Request a Demo</div></div>
+</div>
+
+<!-- ══ SLIDE 5 (id=4): FOUR PANELS ══ -->
+<div class="slide" id="slide-4">
+  <div class="slide-inner">
+    <div class="eyebrow">04 — The output</div>
+    <div class="slide-title">The framework covers <em>climate accountability end to end</em></div>
+    <div class="panels-grid">
+      <div class="panel-card">
+        <div class="panel-num">Panel 01</div>
+        <div class="panel-name">Climate Target Architecture</div>
+        <div class="panel-desc">What has the company committed to? How rigorous is the scope? Is there a real plan behind the pledge?</div>
+      </div>
+      <div class="panel-card">
+        <div class="panel-num">Panel 02</div>
+        <div class="panel-name">Emissions Profile &amp; Pathway</div>
+        <div class="panel-desc">What are the actual emissions? Are they moving in the right direction fast enough? How does the trajectory compare to IEA Net Zero?</div>
+      </div>
+      <div class="panel-card">
+        <div class="panel-num">Panel 03</div>
+        <div class="panel-name">Analyst Briefing</div>
+        <div class="panel-desc">The judgment layer. Good/Bad/Ugly per company in plain language, with an action line naming the right engagement mechanism for each.</div>
+      </div>
+      <div class="panel-card">
+        <div class="panel-num">Panel 04</div>
+        <div class="panel-name">Carbon Credit Portfolio</div>
+        <div class="panel-desc">Project-level disclosure of every carbon credit position. Removal vs avoidance, registry, permanence, volume where stated — sourced directly from the sustainability report.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 6 (id=5): CLIMATE TARGET ARCHITECTURE ══ -->
+<div class="slide" id="slide-5">
+  <div class="slide-inner">
+    <div class="eyebrow">05 — Climate target architecture</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;">
+      <div class="slide-title" style="margin-bottom:0;">Having a target is not the same as having a plan</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);background:#F0EBE0;border-radius:4px;padding:4px 10px;white-space:nowrap;margin-top:6px;flex-shrink:0;">Selected view</div>
+    </div>
+    <div class="table-wrap">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th class="col-label" style="width:28%"></th>
+            <th>Apple</th>
+            <th>Microsoft</th>
+            <th>Alphabet</th>
+            <th>Meta</th>
+            <th>Amazon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="6">What are their targets?</td></tr>
+          <tr>
+            <td class="col-label">Near-term SBTi</td>
+            <td><span class="badge badge-green">✓ Targets Set</span></td>
+            <td><span class="badge badge-green">✓ Targets Set</span></td>
+            <td><span class="badge badge-green">✓ Targets Set</span></td>
+            <td><span class="badge badge-green">✓ Targets Set</span></td>
+            <td><span class="badge badge-red">✗ Removed</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">Temperature standard</td>
+            <td><span class="icon-yes">1.5°C</span></td>
+            <td><span class="icon-yes">1.5°C</span></td>
+            <td><span class="icon-yes">1.5°C</span></td>
+            <td><span class="icon-yes">1.5°C</span></td>
+            <td><span class="icon-na">—</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">Net zero claim</td>
+            <td style="font-size:11px">Carbon Neutral</td>
+            <td style="font-size:11px">Carbon Negative</td>
+            <td style="font-size:11px">Net Zero</td>
+            <td style="font-size:11px">Net Zero</td>
+            <td style="font-size:11px">Net Zero</td>
+          </tr>
+          <tr class="section-row"><td colspan="6">How rigorous are the targets?</td></tr>
+          <tr>
+            <td class="col-label">Scope 3 in target</td>
+            <td><span class="badge badge-green">Full</span></td>
+            <td><span class="badge badge-amber">Intensity</span></td>
+            <td><span class="badge badge-amber">Partial</span></td>
+            <td><span class="badge badge-green">Full</span></td>
+            <td><span class="badge badge-red">None</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">All GHGs covered</td>
+            <td><span class="icon-yes">✓</span></td>
+            <td><span class="icon-yes">✓</span></td>
+            <td><span class="icon-yes">✓</span></td>
+            <td><span class="icon-yes">✓</span></td>
+            <td><span class="icon-no">✗</span></td>
+          </tr>
+          <tr class="section-row"><td colspan="6">Is the plan credible?</td></tr>
+          <tr>
+            <td class="col-label">Transition plan</td>
+            <td><span class="icon-yes">Published</span></td>
+            <td><span class="icon-yes">Published</span></td>
+            <td><span class="icon-yes">Published</span></td>
+            <td><span class="icon-yes">Published</span></td>
+            <td><span class="icon-par">In progress</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">CapEx alignment</td>
+            <td><span class="icon-yes">✓ Aligned</span></td>
+            <td><span class="icon-par">⚠ Partial</span></td>
+            <td><span class="icon-par">⚠ Partial</span></td>
+            <td><span class="icon-par">⚠ Partial</span></td>
+            <td><span class="icon-no">✗ None</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">Third-party assurance</td>
+            <td><span class="icon-yes">Reasonable</span></td>
+            <td><span class="icon-par">Limited</span></td>
+            <td><span class="icon-par">Limited</span></td>
+            <td><span class="icon-par">Limited</span></td>
+            <td><span class="icon-par">Limited</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 7 (id=6): EMISSIONS PROFILE & PATHWAY ══ -->
+<div class="slide" id="slide-6">
+  <div class="slide-inner">
+    <div class="eyebrow">06 — Emissions profile &amp; pathway</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;">
+      <div class="slide-title" style="margin-bottom:0;">True Zero maps <em>every company's full emissions footprint</em></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);background:#F0EBE0;border-radius:4px;padding:4px 10px;white-space:nowrap;margin-top:6px;flex-shrink:0;">Selected view</div>
+    </div>
+    <div class="table-wrap">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th class="col-label" style="width:30%"></th>
+            <th>Apple</th>
+            <th>Microsoft</th>
+            <th>Alphabet</th>
+            <th>Meta</th>
+            <th>Amazon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="6">Are they on track? (MtCO₂e, latest report year)</td></tr>
+          <tr>
+            <td class="col-label">Scope 1</td>
+            <td>0.06</td><td>0.11</td><td>1.8</td><td>0.19</td><td>19.9</td>
+          </tr>
+          <tr>
+            <td class="col-label">Scope 2 — market-based</td>
+            <td><span class="badge badge-muted">0.0</span></td>
+            <td><span class="badge badge-muted">0.0</span></td>
+            <td><span class="badge badge-muted">0.0</span></td>
+            <td><span class="badge badge-muted">0.0</span></td>
+            <td><span class="badge badge-muted">0.0</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">Scope 2 — location-based</td>
+            <td>0.56</td><td>0.48</td><td>9.8</td><td>5.1</td><td>18.7</td>
+          </tr>
+          <tr>
+            <td class="col-label">Scope 3</td>
+            <td>15.6</td><td>16.1</td><td>8.3</td><td>5.6</td><td>27.6</td>
+          </tr>
+          <tr class="section-row"><td colspan="6">Trajectory and pathway alignment</td></tr>
+          <tr>
+            <td class="col-label">Trajectory vs. target pace</td>
+            <td><span class="badge badge-green">On track</span></td>
+            <td><span class="badge badge-red">Wrong direction</span></td>
+            <td><span class="badge badge-red">Wrong direction</span></td>
+            <td><span class="badge badge-red">Wrong direction</span></td>
+            <td><span class="badge badge-muted">No target</span></td>
+          </tr>
+          <tr>
+            <td class="col-label">IEA NZE 2050 alignment</td>
+            <td><span class="badge badge-green">Aligned</span></td>
+            <td><span class="badge badge-green">Aligned</span></td>
+            <td><span class="badge badge-amber">Partial</span></td>
+            <td><span class="badge badge-amber">Partial</span></td>
+            <td><span class="badge badge-muted">Not assessed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 8 (id=7): ANALYST BRIEFING ══ -->
+<div class="slide" id="slide-7">
+  <div class="slide-inner">
+    <div class="eyebrow">07 — Analyst briefing</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;">
+      <div class="slide-title" style="margin-bottom:0;">Expert judgment <em>translates what the data mean</em></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);background:#F0EBE0;border-radius:4px;padding:4px 10px;white-space:nowrap;margin-top:6px;flex-shrink:0;">Selected view</div>
+    </div>
+    <div class="output-cols">
+      <div class="oc-card">
+        <div class="oc-header">
+          <div class="oc-name">Alphabet</div>
+          <div class="oc-badge badge-green">✓ SBTi 1.5°C</div>
+        </div>
+        <div class="gbu-row gbu-good"><span class="gbu-lbl lbl-g">Good</span><span>Alphabet pioneered 24/7 hourly-matched CFE procurement — a methodology Microsoft has since adopted and that is rapidly becoming the industry standard for large tech buyers.</span></div>
+        <div class="gbu-row gbu-bad"><span class="gbu-lbl lbl-b">Bad</span><span>Per Google's own Environmental Report, total GHG rose 51% between 2019 and 2024 — for a company with SBTi-validated near-term targets, this is not a footnote. It is a fundamental contradiction at the center of their climate position.</span></div>
+        <div class="gbu-row gbu-ugly"><span class="gbu-lbl lbl-u">Ugly</span><span>Alphabet reports market-based Scope 2 as zero, but location-based is 9.8 MtCO₂e. The company that invented 24/7 CFE as the rigorous standard simultaneously claims Scope 2 neutrality via the legacy REC methodology it spent a decade arguing is insufficient.</span></div>
+        <div class="oc-action">File a shareholder resolution as a climate risk governance matter — request board-level disclosure of how validated 1.5°C targets reconcile with a 51% absolute emissions increase. The governance framing has SEC precedent and withstands the ordinary business exception.</div>
+      </div>
+      <div class="oc-card">
+        <div class="oc-header">
+          <div class="oc-name">Amazon</div>
+          <div class="oc-badge badge-red">✗ SBTi Removed</div>
+        </div>
+        <div class="gbu-row gbu-good"><span class="gbu-lbl lbl-g">Good</span><span>The Rivian EV order — 100,000 vehicles — is the only confirmed capital commitment tied to a specific asset purchase rather than a procurement target.</span></div>
+        <div class="gbu-row gbu-bad"><span class="gbu-lbl lbl-b">Bad</span><span>Submitted an SBTi commitment letter but never filed targets for validation — SBTi removed the commitment after 24 months. No externally validated near-term target exists.</span></div>
+        <div class="gbu-row gbu-ugly"><span class="gbu-lbl lbl-u">Ugly</span><span>Absolute Scope 1+2 emissions were higher in 2023 than in 2019, despite Amazon being the world's largest corporate renewable energy buyer by capacity.</span></div>
+        <div class="oc-action">Apply a full disclosure discount. Amazon's board opposed a shareholder climate disclosure proposal in April 2026 — engagement without coordinated institutional backing is unlikely to succeed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 9 (id=8): CARBON CREDIT PORTFOLIO ══ -->
+<div class="slide" id="slide-8">
+  <div class="slide-inner">
+    <div class="eyebrow">08 — Carbon credit portfolio</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;">
+      <div class="slide-title" style="margin-bottom:0;">True Zero extracts each company's carbon credit portfolio</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze);background:#F0EBE0;border-radius:4px;padding:4px 10px;white-space:nowrap;margin-top:6px;flex-shrink:0;">Selected view</div>
+    </div>
+    <div class="cp-grid">
+
+      <!-- Apple -->
+      <div class="cp-col">
+        <div class="cp-company">Apple</div>
+        <div class="cp-portfolio-note">Mix of nature-based removal and avoided deforestation. Restore Fund is Apple's flagship vehicle — a $200M fund co-managed with Goldman Sachs and Conservation International.</div>
+        <div class="cp-projects">
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">Restore Fund — Project Alpha (Brazil)</span></div>
+            <div class="cp-proj-meta">Reforestation · <span style="color:var(--red);font-weight:600;">No volume reported</span></div>
+            <div class="cp-proj-notes">Fund structure — Apple holds a position in a managed fund; per-credit inventory not tracked at company level.</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-avoidance">Avoidance</span><span class="cp-proj-name">Chyulu Hills REDD+ — Kenya</span></div>
+            <div class="cp-proj-meta">0.385 MtCO₂e · REDD+</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">Guinan Afforestation Project — China</span></div>
+            <div class="cp-proj-meta">0.1 MtCO₂e · Afforestation</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-avoidance">Avoidance</span><span class="cp-proj-name">Guyana National Forest Protection</span></div>
+            <div class="cp-proj-meta">0.1 MtCO₂e · Jurisdictional REDD+</div>
+          </div>
+        </div>
+        <div class="cp-data-source">Source: Apple Environmental Progress Report 2023</div>
+      </div>
+
+      <!-- Microsoft -->
+      <div class="cp-col">
+        <div class="cp-company">Microsoft</div>
+        <div class="cp-portfolio-note">All-removal portfolio. AtmosClear is the largest disclosed deal in the peer group — a post-vintage position. New purchases paused April 2026.</div>
+        <div class="cp-projects">
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">AtmosClear — BECCS</span></div>
+            <div class="cp-proj-meta">7.0 MtCO₂e · Bioenergy CCS · Post-vintage (Apr 2025)</div>
+            <div class="cp-proj-notes">Largest disclosed removal deal in the peer group. New purchases paused April 2026.</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">1PointFive / STRATOS — Direct Air Capture</span></div>
+            <div class="cp-proj-meta">0.5 MtCO₂e · DAC</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">Carbonfuture / Exomad Green — Biochar</span></div>
+            <div class="cp-proj-meta">0.032 MtCO₂e · Biochar</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">Climeworks &amp; Heirloom — Direct Air Capture</span></div>
+            <div class="cp-proj-meta"><span style="color:var(--red);font-weight:600;">No volume reported</span> · DAC</div>
+            <div class="cp-proj-notes">Advance market commitment — credits represent future delivery; technology not yet at contracted scale.</div>
+          </div>
+        </div>
+        <div class="cp-data-source">Source: Microsoft Environmental Sustainability Report FY2024</div>
+      </div>
+
+      <!-- Amazon -->
+      <div class="cp-col">
+        <div class="cp-company">Amazon</div>
+        <div class="cp-portfolio-note">Two disclosed positions — no project-level volumes stated in the sustainability report.</div>
+        <div class="cp-projects">
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-avoidance">Avoidance</span><span class="cp-proj-name">LEAF Coalition</span></div>
+            <div class="cp-proj-meta">Tropical forest protection · <span style="color:var(--red);font-weight:600;">No volume reported</span></div>
+            <div class="cp-proj-notes">Coalition pledge — individual credit allocations determined at project level; Amazon's share not separately disclosed.</div>
+            <div class="cp-proj-notes">$1B commitment to protect tropical forests. Registry and per-credit volume not reported.</div>
+          </div>
+          <div class="cp-project">
+            <div class="cp-proj-top"><span class="cp-type-badge cp-type-removal">Removal</span><span class="cp-proj-name">Right Now Climate Fund</span></div>
+            <div class="cp-proj-meta">Nature restoration · <span style="color:var(--red);font-weight:600;">No volume reported</span></div>
+            <div class="cp-proj-notes">Fund structure — capital deployed through a managed restoration fund; per-project credits not disclosed.</div>
+            <div class="cp-proj-notes">$100M fund for land restoration projects. No project-level breakdown disclosed.</div>
+          </div>
+        </div>
+        <div class="cp-data-source">Source: Amazon Sustainability Report 2023</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 10 (id=9): SECTOR PATTERNS ══ -->
+<div class="slide" id="slide-9">
+  <div class="slide-inner">
+    <div class="eyebrow">09 — What the data shows</div>
+    <div class="slide-title">Three risks are hiding in plain sight <em>across this peer group</em></div>
+    <div class="patterns-list">
+      <div class="pattern">
+        <div class="pattern-num">1</div>
+        <div>
+          <div class="pattern-title">AI buildout is the central tension — and no one has a credible answer</div>
+          <div class="pattern-body">Every company in this peer group set targets before large-scale AI deployment reshaped their energy and capital footprint. Google's total GHG is now 51% above its 2019 baseline. Microsoft's Scope 3 rose 39% between 2020 and 2024. The emissions trend and the target timeline are structurally misaligned for all five.</div>
+        </div>
+      </div>
+      <div class="pattern">
+        <div class="pattern-num">2</div>
+        <div>
+          <div class="pattern-title">REC-based Scope 2 is about to be a problem for the whole peer group</div>
+          <div class="pattern-body">All five companies report market-based Scope 2 at zero via renewable energy certificates. The GHG Protocol is revising its Scope 2 guidance toward temporal and geographic matching. Any investment screen built on current market-based figures should treat them as provisional.</div>
+        </div>
+      </div>
+      <div class="pattern">
+        <div class="pattern-num">3</div>
+        <div>
+          <div class="pattern-title">Climate language is softening — quietly, across the board</div>
+          <div class="pattern-body">Google removed its 2030 net-zero pledge from its website (June 2025). Microsoft's blog said "the moon has gotten further away." Meta shifted from "commits to" to "has set a goal." These are not typos. A peer-group-wide recalibration of what companies are willing to put in print is underway.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 11 (id=10): WHERE THIS IS GOING ══ -->
+<div class="slide" id="slide-10">
+  <div class="slide-inner">
+    <div class="eyebrow">10 — Where this is going</div>
+    <div class="slide-title">This runs on one person today <em>and scales to any sector</em></div>
+    <div class="roadmap-grid" style="grid-template-columns:1fr 1fr;margin-bottom:16px;flex:1;">
+      <div class="roadmap-card now">
+        <div class="roadmap-phase">Now — MVP</div>
+        <div class="roadmap-name">Big Tech benchmark</div>
+        <ul class="roadmap-items">
+          <li>5 companies, fully reviewed &amp; validated</li>
+          <li>30+ KPIs, Good/Bad/Ugly, action lines</li>
+          <li>6-agent AI review pipeline</li>
+          <li>Post-report material events protocol</li>
+          <li>Interactive benchmark + export</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase">Next — purpose-built on request</div>
+        <div class="roadmap-name">Any company. Any sector. Any client need.</div>
+        <ul class="roadmap-items">
+          <li>Same engine, reconfigured for the brief</li>
+          <li>Oil &amp; gas, automotive, consumer goods, finance</li>
+          <li>Investment due diligence, supply chain screening, peer benchmarking</li>
+          <li>Bespoke reports in days, not weeks</li>
+        </ul>
+      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--bronze); border-radius:0 8px 8px 0; padding:16px 22px;">
+      <div style="font-size:13px; color:var(--dark); line-height:1.65;">The methodology is proven. The infrastructure scales. <strong>What determines scope is the brief — not the team size.</strong> One analyst with the right AI stack can now deliver what used to require a full project team.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 12: WORK WITH ME ══ -->
+<div class="slide" id="slide-11">
+  <div class="slide-inner">
+    <div class="eyebrow">11 — Work with me</div>
+    <div class="slide-title">Senior climate expertise, now delivered at AI speed.</div>
+
+    <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:5px;">
+      <div style="font-weight:700; font-size:16px; color:var(--dark);">Tina Huang</div>
+      <div style="font-size:11.5px; color:var(--muted);">Climate AI Builder &nbsp;·&nbsp; Climate Policy Expert</div>
+    </div>
+    <div style="display:flex; gap:8px; margin-bottom:16px;">
+      <span style="border:1.5px solid var(--bronze); color:var(--bronze); border-radius:40px; padding:4px 16px; font-size:11px; font-weight:600; letter-spacing:0.04em;">Yale University</span>
+      <span style="border:1.5px solid var(--bronze); color:var(--bronze); border-radius:40px; padding:4px 16px; font-size:11px; font-weight:600; letter-spacing:0.04em;">University of California, Berkeley</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px 18px;">
+        <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--bronze); margin-bottom:5px;">World Resources Institute</div>
+        <div style="font-size:13px; font-weight:600; color:var(--dark); margin-bottom:8px;">Research Analyst, Global Climate Program</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:5px;">
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Analyzed NDCs for countries worldwide — assessed ambition gaps across 190+ country submissions</li>
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Built emissions quantification models for 2030 reduction targets from enhanced NDCs</li>
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Managed Climate Watch — 20,000 monthly visitors</li>
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Cited by Reuters and Business Insider</li>
+        </ul>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px 18px;">
+        <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--bronze); margin-bottom:5px;">Boston Consulting Group</div>
+        <div style="font-size:13px; font-weight:600; color:var(--dark); margin-bottom:8px;">Senior Knowledge Analyst, Climate &amp; Sustainability</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:5px;">
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Go-to expert, BCG Center for Climate &amp; Sustainability — built IPCC briefings, NDC/LTS benchmarking frameworks, Article 6 primers deployed firm-wide</li>
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Client-facing expert: helped a Middle East government write their NDC and Long-Term Strategy</li>
+          <li style="font-size:13px; color:var(--mid); line-height:1.5; padding-left:14px; position:relative;"><span style="position:absolute;left:0;color:var(--bronze);">→</span>Supported net zero roadmaps for private sector clients, climate transformation for financial institutions, and national adaptation plans for governments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:#F0EBE0; border:1px solid var(--bronze); border-radius:8px; padding:16px 22px; display:flex; justify-content:space-between; align-items:center; gap:20px;">
+      <div style="font-size:14px; font-weight:600; color:var(--dark); line-height:1.4;">True Zero is one of the first climate AI products I've built — and it won't be the last.</div>
+      <a href="mailto:tina.huang@aya.yale.edu" style="display:inline-block; background:var(--bronze); color:var(--cream); border-radius:40px; padding:8px 16px; font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; white-space:nowrap; flex-shrink:0;">Let's build together →</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- .slides-wrap -->
+
+<div class="slide-counter" id="counter">1 / 12</div>
+
+<script>
+let cur = 0;
+const N = 12;
+
+function buildDots() {
+  const wrap = document.getElementById('dots');
+  for (let i = 0; i < N; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    wrap.appendChild(d);
+  }
+}
+
+function goTo(n) {
+  document.getElementById('slide-' + cur).classList.remove('active');
+  document.querySelectorAll('.dot')[cur].classList.remove('active');
+  cur = n;
+  document.getElementById('slide-' + cur).classList.add('active');
+  document.querySelectorAll('.dot')[cur].classList.add('active');
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').disabled = cur === N - 1;
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + N;
+}
+
+function go(dir) { goTo(Math.max(0, Math.min(N - 1, cur + dir))); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+});
+
+buildDots();
+</script>
+</body>
+</html>

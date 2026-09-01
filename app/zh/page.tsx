@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default function ChineseHome() {
   const goldPill: React.CSSProperties = {
     display: "inline-block",
     backgroundColor: "#B07D3A",
@@ -15,7 +15,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ backgroundColor: "#F5F2EC", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <main lang="zh-CN" style={{ backgroundColor: "#F5F2EC", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       {/* NAV */}
       <nav
         className="legacy-nav"
@@ -54,11 +54,11 @@ export default function Home() {
             letterSpacing: "0.1em",
           }}
         >
-          <a href="#about" style={{ color: "#999891", textDecoration: "none" }}>About</a>
-          <a href="#impact" style={{ color: "#999891", textDecoration: "none" }}>Coaching</a>
-          <a href="#work" style={{ color: "#999891", textDecoration: "none" }}>Climate AI</a>
-          <a href="#writing" style={{ color: "#999891", textDecoration: "none" }}>Writing</a>
-          <Link href="/zh" style={{ color: "#B07D3A", textDecoration: "none" }}>中文</Link>
+          <a href="#about" style={{ color: "#999891", textDecoration: "none" }}>关于</a>
+          <a href="#impact" style={{ color: "#999891", textDecoration: "none" }}>项目教练</a>
+          <a href="#work" style={{ color: "#999891", textDecoration: "none" }}>气候 AI</a>
+          <a href="#writing" style={{ color: "#999891", textDecoration: "none" }}>写作</a>
+          <Link href="/" style={{ color: "#B07D3A", textDecoration: "none" }}>EN</Link>
         </div>
       </nav>
 
@@ -91,10 +91,10 @@ export default function Home() {
               maxWidth: "900px",
             }}
           >
-            Bring me a real problem
+            把<span style={{ whiteSpace: "nowrap" }}>真实问题</span>带来，
             <br />
-            We&apos;ll build something{" "}
-            <em style={{ color: "#B07D3A", fontStyle: "italic", whiteSpace: "nowrap" }}>you can use</em>
+            一起做成{" "}
+            <em style={{ color: "#B07D3A", fontStyle: "italic", whiteSpace: "nowrap" }}>能用的东西</em>
           </h1>
           <p
             className="hero-sub"
@@ -108,7 +108,7 @@ export default function Home() {
               lineHeight: 1.5,
             }}
           >
-            AI Educator &amp; Coach · Climate AI Builder · AI-Native Solo Founder
+            AI 教育者 / 教练 · 气候 AI 产品创造者 · AI 原生一人公司
           </p>
           <a
             href="#impact"
@@ -126,7 +126,7 @@ export default function Home() {
               textDecoration: "none",
             }}
           >
-            See how coaching works →
+            了解项目教练 →
           </a>
         </div>
       </section>
@@ -138,32 +138,32 @@ export default function Home() {
         style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem", order: 3, scrollMarginTop: "72px" }}
       >
         <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
-          Today, I coach people through real AI projects. We start with one problem and build something they can use.
+          现在，我陪人们用 AI 解决真实问题。我们先把一个问题理清楚，再做成能用的东西。
         </p>
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", backgroundColor: "#DDD9D0", borderRadius: "12px", overflow: "hidden" }}>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Client Story · 5 Sessions</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Justin Built an Inventory Prototype for His Company</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Justin had no coding background. In five sessions, he built an inventory scanner, an interactive reporting dashboard, and a daily AI brief. His company sent the inventory prototype to its development team for evaluation.</p>
-            <Link href="/writing/justin-five-sessions?lang=en" style={goldPill}>Read Justin&apos;s story →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Justin · 五节课</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>从 AI 用户，到做出自己的原型</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Justin 没有 Coding 背景。他做出了库存扫描工具、看板和每日 AI 简报。公司把库存原型交给开发团队继续评估。</p>
+            <Link href="/writing/justin-five-sessions?lang=zh" style={goldPill}>读 Justin 的故事 →</Link>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Client Story · 8 Sessions</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Roy Built His First Games. Then He Started Teaching</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>In eight sessions, Roy went from never finishing an AI project to building games, small apps, and a data dashboard. He later helped shape a course and taught an introduction to art.</p>
-            <Link href="/writing/roy-eight-sessions?lang=en" style={goldPill}>Read Roy&apos;s story →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Roy · 八节课</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>第一次做完项目以后，他开始教别人</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Roy 以前从没完成过一个完整项目。八节课里，他做出了游戏、小程序和数据看板。后来，他开始参与课程设计，也开始教美术入门。</p>
+            <Link href="/writing/roy-eight-sessions?lang=zh" style={goldPill}>读 Roy 的故事 →</Link>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Project Coaching · August 2026</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>40 clients</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>They have brought me real problems across 29 fields, including operations, research, sustainability, design, education, and healthcare.</p>
-            <a href="#contact" style={goldPill}>Bring me a real problem →</a>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>项目教练 · 2026 年 8 月</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>40 位客户</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>他们带来的真实问题来自运营、科研、可持续发展、设计、教育、医疗等 29 个领域。</p>
+            <a href="#contact" style={goldPill}>聊聊你的项目 →</a>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>In Their Own Words</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>All Testimonials</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Read every testimonial, in Chinese or English.</p>
-            <Link href="/testimonials?lang=en" style={goldPill}>Read all testimonials →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>他们怎么说</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>全部推荐语</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>看他们做出了什么、哪些地方让他们意外，以及他们把什么带进了下一个项目。</p>
+            <Link href="/testimonials?lang=zh" style={goldPill}>阅读全部推荐语 →</Link>
           </div>
         </div>
       </section>
@@ -174,24 +174,16 @@ export default function Home() {
         className="site-section"
         style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem", order: 4, scrollMarginTop: "72px" }}
       >
-        <div
-          className="contact-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
-            gap: "4rem",
-            alignItems: "start",
-          }}
-        >
+        <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)", gap: "4rem", alignItems: "start" }}>
           <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "44px", color: "#1C1C1A", lineHeight: 1.12, margin: 0 }}>
-            Have a problem you want to <em style={{ color: "#B07D3A", fontStyle: "italic" }}>solve?</em>
+            你有一个值得解决的<em style={{ color: "#B07D3A", fontStyle: "italic" }}>问题吗？</em>
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "flex-start" }}>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "19px", color: "#666660", lineHeight: 1.8, margin: 0 }}>
-              Bring one real problem. We can start with a two-hour session. If the project needs more time, we can keep going.
+              带一个真实问题来。我们可以先从一节两小时的项目教练开始，之后只在项目确实需要时继续。
             </p>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.08em", color: "#B07D3A", margin: 0 }}>$200 USD / 2 hours</p>
-            <a href="mailto:tina.huang@aya.yale.edu" style={goldPill}>Tell me what you&apos;re working on →</a>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.08em", color: "#B07D3A", margin: 0 }}>¥2,000 / 2 小时</p>
+            <a href="mailto:tina.huang@aya.yale.edu" style={goldPill}>告诉我你在做什么 →</a>
           </div>
         </div>
       </section>
@@ -203,7 +195,7 @@ export default function Home() {
         style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem", order: 5, scrollMarginTop: "72px" }}
       >
         <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
-          Climate expertise, built into AI products.
+          把气候专业经验，做成真正有人能用的 AI 产品。
         </p>
 
         <div
@@ -219,38 +211,38 @@ export default function Home() {
         >
           {/* Card: True Zero */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>AI Benchmarking · Climate</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>AI 基准评估 · 气候</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>True Zero</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Most climate claims survive a press release. Not all of them survive this.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>AI read the reports. I decided what the findings meant. I reviewed the analysis six times before publishing it.</p>
-            <a href="/true-zero.html" style={goldPill}>View →</a>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;大部分气候承诺都经得住新闻稿，不一定经得住证据。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>True Zero 检查企业气候承诺和证据能不能对得上。我先建立判断标准，再让 AI 阅读企业报告，前后做了六轮审查。</p>
+            <a href="/true-zero.html" style={goldPill}>查看 →</a>
           </div>
 
           {/* Card: Smoke Story */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Geospatial + AI</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>地理空间数据 + AI</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Smoke Story</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Most wildfire tools show you the data. This one tells you what it means.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Smoke Story combines real-time satellite data on active fires, smoke, and PM2.5 with AI-written explanations and financial-impact estimates. It helps people understand what is happening, not just read the numbers.</p>
-            <a href="https://smokestory.onrender.com" target="_blank" rel="noopener noreferrer" style={goldPill}>Explore →</a>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;大部分野火工具只展示数据，这个产品解释数据意味着什么。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>把实时卫星、烟雾和空气质量数据，做成一场读得懂的野火故事，并估算它造成的经济影响。</p>
+            <a href="https://smokestory.onrender.com" target="_blank" rel="noopener noreferrer" style={goldPill}>探索 →</a>
           </div>
 
-          {/* Card: Learning Journey */}
+          {/* Card: Climate AI Journey */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Open Source · AI + Climate</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Learning Journey</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;I started in February 2026 and built three products by March.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>My notes on learning AI and applying it to climate problems are public on GitHub, starting from day one.</p>
-            <a href="https://github.com/tinahuang1994/Climate-AI-Journey" target="_blank" rel="noopener noreferrer" style={goldPill}>Follow →</a>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>开源 · AI + 气候</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Climate AI Journey</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;从最初几个月的学习笔记，到真正做出来的气候 AI 产品。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>我从 2026 年 2 月开始学习 AI。一路上的课程、笔记和产品实验都完整公开。</p>
+            <a href="https://github.com/tinahuang1994/Climate-AI-Journey" target="_blank" rel="noopener noreferrer" style={goldPill}>查看 →</a>
           </div>
 
           {/* Card: Understory */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Web Art · Nature</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>网页艺术 · 自然</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Understory</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Our language for nature is thin. These words got closer.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>An immersive web art piece built around nature words that English has no room for, from Japanese, Arabic, Māori, Sanskrit, and others. Click a word. Enter the feeling it names.</p>
-            <a href="https://understory-demo.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Enter →</a>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;我们描述自然的语言太薄了，这些词更接近那种感觉。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>十二个英语装不下的自然词，来自日语、阿拉伯语、毛利语、梵语和其他语言。点击一个词，进入它描述的感觉。</p>
+            <a href="https://understory-demo.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>进入 →</a>
           </div>
         </div>
       </section>
@@ -336,7 +328,7 @@ export default function Home() {
                 textAlign: "center",
               }}
             >
-              Download full CV →
+              下载完整 CV →
             </a>
           </div>
 
@@ -366,19 +358,19 @@ export default function Home() {
                 marginBottom: "1.5rem",
               }}
             >
-              AI Educator &amp; Coach · Climate AI Builder · AI-Native Solo Founder
+              AI 教育者 / 教练 · 气候 AI 产品创造者 · AI 原生一人公司
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
-              I grew up in Hangzhou. It is a beautiful city, but for years the air was badly polluted. That is why I started working in climate.
+              我在杭州长大。这座城市很美，也曾长期被严重的空气污染困扰。我的职业生涯因此从气候变化开始。
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
-              At WRI, I analyzed national climate plans for countries around the world. The conclusion was uncomfortable: the world was far off track.
+              在 WRI，我分析世界各国的气候计划。结论并不乐观：世界仍远远偏离目标。
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", lineHeight: 1.85, margin: 0, marginBottom: "1rem" }}>
-              At BCG, I was the climate science and policy expert on the knowledge team. I helped a government in the Middle East write its national climate plans and helped companies build net-zero strategies they could carry out.
+              在 BCG，我参与政府和企业的气候科学、政策和净零战略工作。
             </p>
             <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#B07D3A", lineHeight: 1.85, margin: 0 }}>
-              Today I teach and coach people through real AI projects, build climate AI tools, and run a solo business with systems I built myself.
+              现在，我做项目教练、气候 AI 产品，也用自己搭建的系统经营一人公司。
             </p>
           </div>
 
@@ -404,8 +396,8 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              Have a problem worth{" "}
-              <em style={{ color: "#B07D3A", fontStyle: "italic" }}>solving?</em>
+              你有一个值得解决的
+              <em style={{ color: "#B07D3A", fontStyle: "italic" }}>问题吗？</em>
             </h3>
             <p
               style={{
@@ -417,9 +409,9 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              Bring one real problem. We can start with a two-hour session. If the project needs more time, we can keep going.
+              带一个真实问题来。我们可以先从一节两小时的项目教练开始，之后只在项目确实需要时继续。
             </p>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.08em", color: "#B07D3A", margin: 0 }}>$200 USD / 2 hours</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.08em", color: "#B07D3A", margin: 0 }}>¥2,000 / 2 小时</p>
             <a
               href="mailto:tina.huang@aya.yale.edu"
               style={{
@@ -447,7 +439,7 @@ export default function Home() {
                 alignSelf: "flex-start",
               }}
             >
-              Tell me what you&apos;re working on →
+              告诉我你在做什么 →
             </a>
           </div>
         </div>
@@ -460,33 +452,34 @@ export default function Home() {
         style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem", order: 6, scrollMarginTop: "72px" }}
       >
         <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
-          I write in Chinese first, then adapt selected pieces into English.
+          一路上想清楚的一些事。这些文章先用中文写成，英文版本会按英文读者的习惯重新表达。
         </p>
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", backgroundColor: "#DDD9D0", borderRadius: "12px", overflow: "hidden" }}>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Monthly Notes · August 2026</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>This August, I Got Clearer on the Work I Want</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>Two podcast recordings, returning clients, and one family project showed me what I want to do more of.</p>
-            <Link href="/writing/august-2026?lang=en" style={goldPill}>Catch up →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>月度手记 · 2026 年 8 月</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>这个 8 月，我更清楚自己想怎么工作</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;两次播客录制、持续回来的学员和一个家庭项目，让方向变得更清楚。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>关于项目教练、学习、气候，以及我更想把时间放在哪一种工作上。</p>
+            <Link href="/writing/august-2026?lang=zh" style={goldPill}>回看这个 8 月 →</Link>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Career Change · August 2026</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>I Stopped Trying to Figure Out My Next Career</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>I built eight small products and taught my first class. Those experiments told me more than months of thinking.</p>
-            <Link href="/writing/career-experiments?lang=en" style={goldPill}>See what I tried →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>职业转型 · 2026 年 8 月</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>我没有想清楚新职业，先做了一个个小实验</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>八款小产品和咖啡馆里的一次教学，给了我比反复思考更具体的证据。</p>
+            <Link href="/writing/career-experiments?lang=zh" style={goldPill}>看看我试了什么 →</Link>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Solo Business · August 2026</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>How I Work Four Hours a Day</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>I give AI enough context to be useful, turn repeated work into systems, and decide what done means before I start. I count learning separately.</p>
-            <Link href="/writing/four-focused-hours?lang=en" style={goldPill}>See how it works →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>一人公司 · 2026 年 8 月</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>每天只工作 4 小时，我是怎么做到的？</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>上下文、自动化和清晰的完成标准，让四小时这条边界成为可能。</p>
+            <Link href="/writing/four-focused-hours?lang=zh" style={goldPill}>看看怎么做到 →</Link>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Essay · April 2026</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>I Shipped Four AI Products in One Month</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;No developer background. No roadmap. Just a download and a problem worth solving.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>What four products taught me about learning AI by building.</p>
-            <Link href="/writing/ai-month-one?lang=en" style={goldPill}>See what I learned →</Link>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>用 AI 创造 · 2026 年 4 月</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>一个月做出四款 AI 产品，我学到了什么</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;没有开发背景，也没有路线图。只是下载了工具，然后从一个值得解决的问题开始。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.85 }}>从气候政策到四个真正跑起来的产品，我是怎么边做边学的。</p>
+            <Link href="/writing/ai-month-one?lang=zh" style={goldPill}>开始动手 →</Link>
           </div>
         </div>
       </section>
@@ -497,37 +490,37 @@ export default function Home() {
         style={{ borderTop: "0.5px solid #DDD9D0", padding: "5rem 3rem", order: 7 }}
       >
         <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "20px", color: "#666660", margin: 0, marginBottom: "2.5rem", lineHeight: 1.8 }}>
-          Some projects start with curiosity. Others solve a problem I keep seeing.
+          有些项目来自好奇，有些是为了解决我反复遇到的问题。
         </p>
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", backgroundColor: "#DDD9D0", borderRadius: "12px", overflow: "hidden" }}>
           {/* Card: NoThanks */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>AI Chatbot · Workplace</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>AI 聊天工具 · 职场</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>NoThanks</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;You already know you should say no. You just don&apos;t know how.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Describe the situation and get a reply you can send. I built it using frameworks I learned at BCG for saying no at work without burning bridges.</p>
-            <a href="https://nothanks-xi.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Try →</a>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;你已经知道应该拒绝，只是不知道怎么说。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>描述具体情境，就能得到一段真正可以发出去的回复。产品使用了我在 BCG 学到的职场拒绝框架。</p>
+            <a href="https://nothanks-xi.vercel.app" target="_blank" rel="noopener noreferrer" style={goldPill}>试用 →</a>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Hobby · Creative</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>兴趣项目 · 创作</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Echo</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;Cold, vast, and quiet. The way space actually feels.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Built after watching Project Hail Mary. A starfield that breathes with the music. Three classical pieces — Debussy, Satie, Holst. Or bring your own.</p>
-            <a href="/echo/index.html" target="_blank" rel="noopener noreferrer" style={goldPill}>Listen →</a>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;冰冷、辽阔、安静，像太空真正给人的感觉。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>读完《挽救计划》以后做的一片会随着音乐呼吸的星空。</p>
+            <a href="/echo/index.html" target="_blank" rel="noopener noreferrer" style={goldPill}>聆听 →</a>
           </div>
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Hobby · Climate</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>兴趣项目 · 气候</p>
             <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>Climate Triple Takes</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;One story. Three ways to read it.&rdquo;</p>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>Satire, optimism, or straight facts. Pick your mood. Same story, completely different experience.</p>
-            <a href="https://climatetripletakes.netlify.app" target="_blank" rel="noopener noreferrer" style={goldPill}>Discover →</a>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", fontStyle: "italic", color: "#999891", margin: 0, marginBottom: "1rem", lineHeight: 1.7 }}>&ldquo;同一个故事，三种读法。&rdquo;</p>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, marginBottom: "1.5rem", lineHeight: 1.8 }}>讽刺、乐观，或者只看事实。选择你今天想用哪种方式读同一则气候新闻。</p>
+            <a href="https://climatetripletakes.netlify.app" target="_blank" rel="noopener noreferrer" style={goldPill}>查看 →</a>
           </div>
 
           {/* Card: More to come */}
           <div className="work-card" style={{ backgroundColor: "#FDFAF5", padding: "2.5rem" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>Next</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>More to come</h2>
-            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, lineHeight: 1.8 }}>I am still building. I will add the next experiment when it is ready.</p>
+            <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.15em", color: "#B07D3A", margin: 0, marginBottom: "1rem" }}>下一步</p>
+            <h2 style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 300, fontSize: "26px", color: "#1C1C1A", margin: 0, marginBottom: "0.75rem" }}>新的实验还在做</h2>
+            <p style={{ fontFamily: "var(--font-cormorant), serif", fontWeight: 400, fontSize: "17px", color: "#666660", margin: 0, lineHeight: 1.8 }}>做好以后，我会放在这里。</p>
           </div>
         </div>
       </section>
